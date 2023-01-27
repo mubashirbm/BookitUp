@@ -1,51 +1,46 @@
 // import { Button, Form,Input } from 'antd'
-import React  from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import axios from "axios"
-import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux';
-import { showLoading,hideLoading } from '../redux/alertsSlice';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/alertsSlice";
 
-
-import { useRef, useState, useEffect } from "react";
-import { userRegister} from '../Api/userApi/AuthRequest';
+import { useRef, useState,   } from "react";
+import { userRegister } from "../Api/userApi/AuthRequest";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
-
-
+const REGISTER_URL = "/register";
 
 function Register() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [name,setName] = useState("")
-   const [email,setEmail] = useState("")
-   const [password,setPassword] = useState("")
-   
-  const Register= async(e) =>{
-    e.preventDefault() 
-   
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const Register = async (e) => {
+    e.preventDefault();
+
     try {
-      dispatch(showLoading())
-      const response=await userRegister({name,email,password})
-      dispatch(hideLoading())
-      if(response.success){
-        toast("redirecting to login page")
-        toast.success(response.message)
-        navigate("/login")
-
-
-      }else{
+      dispatch(showLoading());
+      const response = await userRegister({ name, email, password });
+      dispatch(hideLoading());
+      if (response.success) {
+        toast("redirecting to login page");
+        toast.success(response.message);
+        navigate("/login");
+      } else {
         console.log("masoooo");
-        toast.error(response.message)
-      } 
+        toast.error(response.message);
+      }
     } catch (error) {
-      dispatch(hideLoading())         
-      
-      toast.error("something went wrong")
+      dispatch(hideLoading());
+
+      toast.error("something went wrong");
     }
-  }
+  };
 
   return (
     // <div className="authentication">
@@ -68,46 +63,98 @@ function Register() {
 
     //       </Form>
 
-
     //   </div>
     // </div>
 
-
-
     <div>
+      <div className="flex justify-center items-center h-screen  ">
+        <div class="w-full max-w-sm p-4 bg-white border border-gray-200  rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <form class="space-y-8" action="">
+            <h5 class="text-xl  font-medium text-gray-900 text-center  dark:text-white">
+              Register Here
+            </h5>
+            <div>
+              <label
+                for="Name"
+                class="block  mb-6 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Name
+              </label>
+              <input
+                type="Name"
+                name="name"
+                id="Name"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                value={name}
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="Plese Enter Your Name"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="email"
+                class="block  mb-6 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="name"
+                id="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                value={email}
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="Plese Enter Your Email"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="Password"
+                class="block  mb-6 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                value={password}
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="Plese Enter Your Password"
+                required
+              />
+            </div>
 
-  
-    <div className='flex justify-center items-center h-screen  '>
-<div class="w-full max-w-sm p-4 bg-white border border-gray-200  rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-<form class="space-y-8" action="">
-    <h5 class="text-xl  font-medium text-gray-900 text-center  dark:text-white">Register Here</h5>
-    <div>
-        <label for="Name"  class="block  mb-6 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-        <input type="Name" name="name" id="Name"  onChange={(e)=>{setName(e.target.value)}}  value={name}class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Plese Enter Your Name" required />
+            <button
+              type="submit"
+              onClick={Register}
+              class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Register
+            </button>
+            <Link
+              to="/login"
+              class="block mt-3 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Already Registered ? Login
+            </Link>
+          </form>
+        </div>
+      </div>
     </div>
-    <div>
-        <label for="email"  class="block  mb-6 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-        <input type="email" name="name" id="email"  onChange={(e)=>{setEmail(e.target.value)}}  value={email}class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Plese Enter Your Email" required />
-    </div>
-    <div>
-        <label for="Password"  class="block  mb-6 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-        <input type="password" name="password" id="Password"  onChange={(e)=>{setPassword(e.target.value)}}  value={password}class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Plese Enter Your Password" required />
-    </div>
-   
-   
-    <button type="submit" onClick={Register} class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
-    <Link to='/login' class="block mt-3 text-sm font-medium text-gray-900 dark:text-white"  >Already Registered ? Login</Link>
-
-</form>
-</div>
-</div>
-
-</div>
   );
 }
 
 export default Register;
-
 
 // const Register = () => {
 //   const userRef = useRef();
@@ -222,7 +269,6 @@ export default Register;
 //                           Letters, numbers, underscores, hyphens allowed.
 //                       </p>
 
-
 //                       <label htmlFor="password">
 //                           Password:
 //                           {/* <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
@@ -245,7 +291,6 @@ export default Register;
 //                           Must include uppercase and lowercase letters, a number and a special character.<br />
 //                           Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
 //                       </p>
-
 
 //                       <label htmlFor="confirm_pwd">
 //                           {/* Confirm Password:

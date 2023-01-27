@@ -6,15 +6,14 @@ import Navbar from "../components/navbar";
 import { useState } from "react";
 import  Banner from "../components/Banner";
 import Search from "../components/search";
-
+// import getUser from '../Api/userApi/getRequest'
 function Home() {
   const [name, setName] = useState("");
   const [Hotel, setHotel] = useState([]);
   console.log(Hotel, "Hotels");
   const getData = async () => {
     try {
-      const { data } = await axios.post(
-        "/api/get-user-info-by-id",
+      const { data } = await axios.post("/api/get-user-info-by-id",
         {},
         {
           headers: {
@@ -22,6 +21,7 @@ function Home() {
           },
         }
       );
+      // const user= getUser()
       console.log(data.data, "get data data");
       const name = data.data.name;
       console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
@@ -46,7 +46,7 @@ function Home() {
   useEffect(() => {
     getData();
     getAllHotel();
-  }, []);
+  }, [] );
   // useEffect(() => {
   //   getHotel()
 

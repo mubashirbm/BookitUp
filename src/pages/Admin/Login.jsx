@@ -23,10 +23,7 @@ function Login() {
       dispatch(showLoading());
       console.log("jbfd.zfjhdjkz")
       const response=await adminLogin({email,Password})
-      // const response = await axios.post(
-      //   "http://localhost:5000/admin/login",
-      //   {email,Password}
-      // );
+    console.log(response)
       dispatch(hideLoading());
 
       if (response.success) {

@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { toast, Toast } from "react-hot-toast";
-import Navbar from "../../components/admin/navbar";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
-import Sidebar from "./sidebar";
 
 export default function AddHotel() {
   const dispatch = useDispatch();
@@ -46,22 +44,20 @@ export default function AddHotel() {
 
   return (
     <div>
-      {/* <Sidebar/> */}
 
-      <Navbar />
       <div>
      
 <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
-    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Account settings</h1>
+    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Add Hotel</h1>
     <form>
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-                <label class="text-white dark:text-gray-200" for="username">Username</label>
+                <label class="text-white dark:text-gray-200" for="username">Name</label>
                 <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
             </div>
 
             <div>
-                <label class="text-white dark:text-gray-200" for="emailAddress">Email Address</label>
+                <label class="text-white dark:text-gray-200" for="emailAddress">Location</label>
                 <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
             </div>
 
@@ -79,12 +75,13 @@ export default function AddHotel() {
                 <input id="color" type="color" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
             </div>
             <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Select</label>
-                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Category</label>
+                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     <option>Surabaya</option>
                     <option>Jakarta</option>
                     <option>Tangerang</option>
                     <option>Bandung</option>
+                    </select>
                 
             </div>
             <div>
@@ -124,42 +121,12 @@ export default function AddHotel() {
         </div>
 
         <div class="flex justify-end mt-6">
-            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
+            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Add</button>
         </div>
     </form>
 </section>
 
- <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
-    <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
-    
-    <form>
-        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-            <div>
-                <label class="text-gray-700 dark:text-gray-200" for="username">Username</label>
-                <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div>
-
-            <div>
-                <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Email Address</label>
-                <input id="emailAddress" type="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div>
-
-            <div>
-                <label class="text-gray-700 dark:text-gray-200" for="password">Password</label>
-                <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div>
-
-            <div>
-                <label class="text-gray-700 dark:text-gray-200" for="passwordConfirmation">Password Confirmation</label>
-                <input id="passwordConfirmation" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div>
-        </div>
-
-        <div class="flex justify-end mt-6">
-            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
-        </div>
-    </form>
-</section>
+ 
       </div>
     </div>
   );
