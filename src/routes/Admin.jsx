@@ -8,6 +8,8 @@ import UserManage from "../pages/Admin/UserManage";
 import Navbar from "../components/admin/navbar";
 import PublicRoute from "../components/admin/PublicRoute";
 import ProtectedRoute from "../components/admin/ProtectedRoute";
+import ViewHotel from "../pages/Admin/ViewHotel";
+import EditHotel from "../pages/Admin/EditHotel"
 
 export default function Admin() {
   return (
@@ -40,9 +42,25 @@ export default function Admin() {
         />
         <Route
           exact
-          path="/User"element={
+          path="/user"element={
             <ProtectedRoute>
               <UserManage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/hotels"element={
+            <ProtectedRoute>
+              <ViewHotel />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/editHotel"element={
+            <ProtectedRoute>
+              <EditHotel />
             </ProtectedRoute>
           }
         />

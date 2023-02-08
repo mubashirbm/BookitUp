@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { toast, Toast } from "react-hot-toast";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
-import {addingHotel} from '../../Api/adminApi/postRequest'
+import {updateHotel} from '../../Api/adminApi/postRequest'
 import { Descriptions } from "antd";
+import { useFetcher, useLocation } from "react-router-dom";
+import {hotelById} from "../../Api/adminApi/getRequest"
 
 export default function AddHotel() {
   const dispatch = useDispatch();
   const [hotel, setHotel] = useState("");
+  // const [hotelId,setHotelById]=useState("")
+  // console.log(hotelId,"Hotel    ById")
+  const [hotelDetail,setHotelDetail]=useState("")
+  const locations = useLocation()
+  const data = locations?.state?.hotelId;
+  // console.log(data,"sfgvhbjnlklmvmnjbhv")
+  let Id=data.hotel._id
+  console.log(Id,"Id")
+  // setHotelById(Id)
+
 
   console.log(hotel);
   const [location, setLocation] = useState("");
@@ -20,7 +32,24 @@ export default function AddHotel() {
   // const [ImageUrl2, setImageUrl2] = useState("");
   console.log(description);
   const cloudAPI = 'dcfbzgrgb'
-  const addHotel = async (e) => {
+
+const getHotelById=async(hotelId)=>{
+  console.log(Id,"inside fun")
+  try {
+
+    console.log(hotelId,"hotel by Id")
+    const data=await hotelById(hotelId)
+    setHotelDetail(data)
+    console.log(data, "lllllllllll")
+    console.log(data.hotel,"hotelllllllllllId")
+    
+  } catch (error) {
+    
+  }
+}
+
+
+  const editHotel = async (e) => {
     e.preventDefault();
      dispatch(showLoading());
 
@@ -33,7 +62,8 @@ export default function AddHotel() {
         
 
     if(response?.data.url){
-      const addHotel = {
+      const update = {
+        id:Id,
         hotel,
         location,
         description,
@@ -44,10 +74,10 @@ export default function AddHotel() {
       try {
         dispatch(showLoading());
   
-        console.log(addHotel, "frond add");
+        console.log(update, "frond add");
         const result = (
           // await axios.post("http://localhost:5000/admin/AddHotel", addHotel)).data;
-          await addingHotel(addHotel)).data
+          await updateHotel(update)).data
         console.log(result);
         toast.success(result.message);
         setHotel("")
@@ -61,25 +91,27 @@ export default function AddHotel() {
     }
     console.log(response);
   };
-
+useEffect(()=>{
+getHotelById(Id)
+},[])
 
   return (
     <div>
 
       <div>
-     
+     {/* {hotel.map((hotel)=>{})} */}
 <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
-    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Add Hotel</h1>
+    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Edit Hotel</h1>
     <form >
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
                 <label class="text-white dark:text-gray-200" for="username">Name</label>
-                <input id="hotel" name="hotel" type="text" value={hotel} onChange={(e)=>{setHotel(e.target.value)}} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required />
+                <input id="hotel" name="hotel" type="text" value={hotel?hotel:hotelDetail?.hotel} onChange={(e)=>{setHotel(e.target.value)}} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required />
             </div>
 
             <div>
                 <label class="text-white dark:text-gray-200" for="emailAddress">Location</label>
-                <input id="location"  type="text" value={location} onChange={(e)=>setLocation(e.target.value)} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"required />
+                <input id="location"  type="text" value={hotel?location:hotelDetail?.location} onChange={(e)=>setLocation(e.target.value)} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"required />
             </div>
 
             {/* <div>
@@ -115,7 +147,7 @@ export default function AddHotel() {
             </div> */}
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Description</label>
-                <textarea id="description" type="text" onChange={(e)=>setDescription(e.target.value)} value={description} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required></textarea>
+                <textarea id="description" type="text" onChange={(e)=>setDescription(e.target.value)} value={hotel?description:hotelDetail?.description} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required></textarea>
             </div>
             <div>
                 <label class="block text-sm font-medium text-white">
@@ -142,7 +174,7 @@ export default function AddHotel() {
         </div>
 
         <div class="flex justify-end mt-6">
-            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600" onClick={addHotel} >Add</button>
+            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600" onClick={editHotel} >Add</button>
         </div>
     </form>
 </section>

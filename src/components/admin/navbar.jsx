@@ -124,7 +124,7 @@ import axios from 'axios'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', current: false },
-  { name: 'View Hotel', href: 'viewHotel', current: false },
+  { name: 'View Hotel', href: 'Hotels', current: false },
   { name: 'Add Hotel', href: 'addHotel', current: false },
   { name: 'User', href: 'user', current: false },
 ]
@@ -225,7 +225,7 @@ export default function Navbar() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="">{name}</span>
+                      <span className="text-white">{name}</span>
           
             
                       

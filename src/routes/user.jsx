@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import PublicRoute from '../components/PublicRoute';
 import ProtectedRoute from '../components/ProtectedRoute';
+import Homepage from '../pages/Homepage';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -20,6 +21,11 @@ export default function User() {
         <Route exact path='/' element= {
           
             <Home />
+          
+        } />
+        <Route exact path='/hm' element= {
+          
+            <Homepage />
           
         } />
         <Route exact path='/login' element= {
