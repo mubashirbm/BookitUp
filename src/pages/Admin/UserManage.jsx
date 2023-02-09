@@ -87,11 +87,11 @@ useEffect(() => {
           </tr>
         </thead>
         <tbody>
-         {/* {users?.map((Item,index)=>{
+         {users?.map((Item,index)=>{
           return(
             <ListUsers Item={Item} index={index}/>
             )
-         })} */}
+         })}
           
         </tbody>
       </table>

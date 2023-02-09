@@ -59,12 +59,12 @@ function Home() {
       <Navbar name={name} />
       <Banner />
       <div class="absolute left-72 bg-blue-100 bottom-0">
-        <Search />
+        <Search Hotel={Hotel}  />
       </div>
       <div class="flex px-20 py-20 gap-5">
         {Hotel?.map((hotel) => (
           <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
+            <a href="">
               <img class="rounded-t-lg" src={hotel.imageUrls} alt="" />
             </a>
             <div class="p-5">

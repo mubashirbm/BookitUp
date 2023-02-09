@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice"
-import { userLogin } from '../Api/userApi/AuthRequest';
+import { userLogin } from '../Api/userApi/UserRequest';
 
 function Login() {
   const dispatch = useDispatch();

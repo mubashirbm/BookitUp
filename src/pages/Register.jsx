@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 
 import { useRef, useState,   } from "react";
-import { userRegister } from "../Api/userApi/AuthRequest";
+import { userRegister } from "../Api/userApi/UserRequest";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;

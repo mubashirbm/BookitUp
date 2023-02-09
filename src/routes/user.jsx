@@ -7,6 +7,8 @@ import Register from '../pages/Register';
 import PublicRoute from '../components/PublicRoute';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Homepage from '../pages/Homepage';
+import ViewHotels from '../pages/viewHotels';
+import HotelInfo from '../pages/HotelInfo';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -21,6 +23,16 @@ export default function User() {
         <Route exact path='/' element= {
           
             <Home />
+          
+        } />
+        <Route exact path='/hotelInfo' element= {
+          
+            <HotelInfo />
+          
+        } />
+        <Route exact path='/viewHotel' element= {
+          
+            <ViewHotels />
           
         } />
         <Route exact path='/hm' element= {
