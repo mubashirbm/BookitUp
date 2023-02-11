@@ -24,6 +24,7 @@ function Booking({Hotel}) {
                 <label>Destination</label>
                     
                     <select name="" id="" onChange={handleLocation} className='lg:w-[300px] md:w-full border rounded-md p-2'>
+                        <option></option>
              {data.Hotel?.map((hotel)=>
                     <option value={hotel.location}>{hotel.location}</option>
                     

@@ -4,70 +4,76 @@ import { toast, Toast } from "react-hot-toast";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
-import {addingHotel} from '../../Api/adminApi/postRequest'
+import {addingRoom} from '../../Api/adminApi/postRequest'
 import { Descriptions } from "antd";
+import { useLocation } from "react-router-dom";
 
-export default function AddHotel() {
+export default function EditRoom() {
   const dispatch = useDispatch();
-  const [hotel, setHotel] = useState("");
 
-  console.log(hotel);
-  const [location, setLocation] = useState("");
-  const [category, setCategory] = useState("");
-  console.log(location);
+  // const locations = useLocation()
+  // const data = locations?.state?.hotelId;
+  // // console.log(data,"sfgvhbjnlklmvmnjbhv")
+  // let Id=data.hotel._id
+  // console.log(Id,"Id")
+
+
+  const [room, setRoom] = useState("");
+
+  console.log(room);
+  const [price, setPrice] = useState("");
+  // const [category, setCategory] = useState("");
+  // console.log(location);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState([])
-  // const [images, setImages] = useState([])
   // const [ImageUrl2, setImageUrl2] = useState("");
   console.log(description);
   const cloudAPI = 'dxrzjyxr8'
-  const addHotel = async (e) => {
+  const addRoom = async (e) => {
     e.preventDefault();
      dispatch(showLoading());
-     
-     const formData = new FormData();
-     let images=[]
-     for(let i=0;i<image.length;i++){
-       formData.append('file', image[i]);
-       formData.append('upload_preset', 'Bookit');
-       console.log(formData);
+
+    const formData = new FormData();
+    let images=[]
+      for(let i=0;i<image.length;i++){
+        formData.append('file', image[i]);
+        formData.append('upload_preset', 'Bookit');
+        console.log(formData);
        const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudAPI}/image/upload`, formData)
        const imageUrl = response.data.url
-       images.push(imageUrl)
+        images.push(imageUrl)
       }
       console.log(images)
-      if(images.length){
-        const addHotel = {
-          hotel,
-          location,
-          description,
-          category,
-          images,
-        };
+    if(images.length){
+      const addRoom = {
+        // hotelId:Id,
+        room,
+        price,
+        description,
         
-        try {
-          dispatch(showLoading());
-          
-          console.log(addHotel, "frond add");
-          const result = (
-            // await axios.post("http://localhost:5000/admin/AddHotel", addHotel)).data;
-            await addingHotel(addHotel)).data
-            console.log(result);
-            toast.success(result.message);
-            setHotel("")
-            setDescription("")
-            setLocation("")
-            setImage("")
-            dispatch(hideLoading());
-          } catch (error) {
-            console.log(error);
-          }
-        }
-        // console.log(response);
+        images,
       };
-      // const handleImageChange = (event) => {
-      //   setImages([...images, URL.createObjectURL(event.target.files[0])]);
-      // };
+  
+      try {
+        dispatch(showLoading());
+  
+        console.log(addRoom, "frond add");
+        const result = (
+          // await axios.post("http://localhost:5000/admin/AddHotel", addHotel)).data;
+          await addingRoom(addRoom)).data
+        console.log(result);
+        toast.success(result.message);
+        setRoom("")
+        setDescription("")
+        setPrice("")
+        setImage("")
+        dispatch(hideLoading());
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    // console.log(response);
+  };
 
 
   return (
@@ -76,17 +82,17 @@ export default function AddHotel() {
       <div>
      
 <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
-    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Add Hotel</h1>
+    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Edit Room</h1>
     <form >
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
                 <label class="text-white dark:text-gray-200" for="username">Name</label>
-                <input id="hotel" name="hotel" type="text" value={hotel} onChange={(e)=>{setHotel(e.target.value)}} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required />
+                <input id="room" name="room" type="text" value={room} onChange={(e)=>{setRoom(e.target.value)}} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required />
             </div>
 
             <div>
-                <label class="text-white dark:text-gray-200" for="emailAddress">Location</label>
-                <input id="location"  type="text" value={location} onChange={(e)=>setLocation(e.target.value)} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"required />
+                <label class="text-white dark:text-gray-200" for="emailAddress">Price</label>
+                <input id="price"  type="number" value={price} onChange={(e)=>setPrice(e.target.value)} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"required />
             </div>
 
             {/* <div>
@@ -103,13 +109,13 @@ export default function AddHotel() {
                 <input id="color" type="color" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
             </div> */}
             <div>
-                <label class="text-white dark:text-gray-200" for="category">Category</label>
-                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" onChange={(e)=>setCategory(e.target.value)} value={category} required>
-                    <option>Vlla</option>
-                    <option>Resort</option>
+                {/* <label class="text-white dark:text-gray-200" for="category">Category</label> */}
+                {/* <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" onChange={(e)=>setCategory(e.target.value)} value={category} required> */}
+                    {/* <option>Vlla</option> */}
+                    {/* <option>Resort</option> */}
                     {/* <option></option> */}
                     {/* <option>Bandung</option> */}
-                    </select>
+                    {/* </select> */}
                 
             </div>
             {/* <div>
@@ -124,7 +130,6 @@ export default function AddHotel() {
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Description</label>
                 <textarea id="description" type="text" onChange={(e)=>setDescription(e.target.value)} value={description} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required></textarea>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-white">
                 Image
@@ -145,19 +150,12 @@ export default function AddHotel() {
                     PNG, JPG, GIF up to 10MB
                   </p>
                 </div>
-            </div>
-                {/* <div className="flex">
-            {image.map((image, index) => (
-              
-        <img  className=" h-32 w-32"key={index} src={image} alt="Preview" />
-      ))}
-
-                </div> */}
               </div>
+            </div>
         </div>
 
         <div class="flex justify-end mt-6">
-            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600" onClick={addHotel} >Add</button>
+            <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600" onClick={addRoom} >Add</button>
         </div>
     </form>
 </section>

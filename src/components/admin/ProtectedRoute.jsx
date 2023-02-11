@@ -20,7 +20,7 @@ function ProtectedRoute(props) {
         { token: localStorage.getItem("token") },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
           },
         }
       );
@@ -45,7 +45,7 @@ function ProtectedRoute(props) {
   //   }
   // }, [user]);
 
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem("adminToken")) {
     return props.children;
   } else {
     return <Navigate to="/admin/login" />;

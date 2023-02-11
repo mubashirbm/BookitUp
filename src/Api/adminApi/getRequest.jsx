@@ -8,6 +8,12 @@ export const hotels= async ()=>{
     console.log(data,"000000000000000000000000000000");
     return data
 }
+export const rooms= async ()=>{
+    console.log("room object")
+    const  {data} =await adminAPI.get("/getAllRoom")
+    console.log(data,"000000000000000000000000000000");
+    return data
+}
 
 export const BlockUser=async(isActive,userId)=>{
     const response=await adminAPI.get(`/changeStatus/${isActive}/${userId}`)
@@ -21,6 +27,13 @@ export const hotelById=async(hotelId)=>{
     console.log(hotelId,"dddddddddddddddddddd")
     console.log("dddddddddddddddddddd")
     const {data}=await adminAPI.get(`/getHotelById/${hotelId}`)
+    console.log(data)
+    return data
+}
+export const roomById=async(roomId)=>{
+    console.log(roomId,"dddddddddddddddddddd")
+    console.log("dddddddddddddddddddd")
+    const {data}=await adminAPI.get(`/getRoomById/${roomId}`)
     console.log(data)
     return data
 }

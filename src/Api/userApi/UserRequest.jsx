@@ -37,3 +37,12 @@ export const getHotelData = async (Id) => {
     console.log(error);
   }
 };
+export const getRoomData = async (hotelId) => {
+  try {
+    const {data} = await userApi.get(`/RoomDetails/${hotelId}`);
+    console.log(data,"in userApi")
+    return data
+  } catch (error) {
+    console.log(error);
+  }
+};

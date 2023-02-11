@@ -1,10 +1,39 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import log from '../images/log.png'
+import axios from 'axios'
+import { useState,useEffect } from 'react'
 
-
-const Navbar = ({name}) => {
+const Navbar = () => {
   const navigate=useNavigate()
+
+  const [name,setName]=useState("")
+  // console.log(name,"naaaameeee")
+
+  const getData = async () => {
+    try {
+      const { data } = await axios.post(
+        "/api/get-user-info-by-id",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+        );
+        console.log(data,'dataaaaa')
+      console.log(data.data, "get data data");
+      const name = data.data.name;
+      console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
+      setName(name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+
+  }, []);
   // const [name,setname]=(name)
     return (
         <div>
@@ -41,7 +70,7 @@ const Navbar = ({name}) => {
                         <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Previous Booking</a>
                       </li>
                       <li
-                      onClick={()=>{localStorage.clear() 
+                      onClick={()=>{localStorage.clear("token") 
                         
                       navigate('/Login')}}>
                       <a  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"  >Logout</a>
@@ -54,7 +83,7 @@ const Navbar = ({name}) => {
                 </div>
             </li>
             <li className='text-white'>
-              {name?name:<Link to='/Login' class=" block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" aria-current="page">
+              {name?name:<Link to='/login' class=" block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" aria-current="page">
               LogIn/signUp
               </Link>}
             </li>

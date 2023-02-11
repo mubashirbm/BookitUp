@@ -59,9 +59,9 @@ function Home() {
       <Navbar name={name} />
       <Banner />
       <div class="absolute left-72 bg-blue-100 bottom-0">
-        <Search Hotel={Hotel}  />
+        <Search Hotel={Hotel} />
       </div>
-      <div class="flex px-20 py-20 gap-5">
+      {/* <div class="flex px-20 py-20 gap-5">
         {Hotel?.map((hotel) => (
           <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
             <a href="">
@@ -98,7 +98,7 @@ function Home() {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* <Banner /> */}
     </>

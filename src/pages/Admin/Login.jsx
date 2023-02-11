@@ -31,9 +31,9 @@ function Login() {
         if(response.isAdmin){
 
           toast.success(response.message);
-          toast("redirecting to home page");
+          toast("redirecting to home  page");
           console.log("admin")
-          localStorage.setItem("token", response.data);
+          localStorage.setItem("adminToken", response.data);
           navigate("/admin");
         }else{
 

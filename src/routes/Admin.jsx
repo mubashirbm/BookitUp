@@ -10,6 +10,9 @@ import PublicRoute from "../components/admin/PublicRoute";
 import ProtectedRoute from "../components/admin/ProtectedRoute";
 import ViewHotel from "../pages/Admin/ViewHotel";
 import EditHotel from "../pages/Admin/EditHotel"
+import AddRoom from "../pages/Admin/AddRoom";
+import ViewRoom from "../pages/Admin/ViewRoom"
+import EditRoom from "../pages/Admin/EditRoom"
 
 export default function Admin() {
   return (
@@ -21,14 +24,6 @@ export default function Admin() {
           path="/"element={
             <ProtectedRoute>
               <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          exact
-          path="/addHotel"element={
-            <ProtectedRoute>
-              <AddHotel />
             </ProtectedRoute>
           }
         />
@@ -48,6 +43,14 @@ export default function Admin() {
             </ProtectedRoute>
           }
         />
+          <Route
+            exact
+            path="/addHotel"element={
+              <ProtectedRoute>
+                <AddHotel />
+              </ProtectedRoute>
+            }
+          />
         <Route
           exact
           path="/hotels"element={
@@ -61,6 +64,30 @@ export default function Admin() {
           path="/editHotel"element={
             <ProtectedRoute>
               <EditHotel />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/addRoom"element={
+            <ProtectedRoute>
+              <AddRoom />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/rooms"element={
+            <ProtectedRoute>
+              <ViewRoom />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/editRoom"element={
+            <ProtectedRoute>
+              <EditRoom />
             </ProtectedRoute>
           }
         />

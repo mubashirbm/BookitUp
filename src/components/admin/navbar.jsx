@@ -124,8 +124,8 @@ import axios from 'axios'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', current: false },
-  { name: 'View Hotel', href: 'Hotels', current: false },
-  { name: 'Add Hotel', href: 'addHotel', current: false },
+  { name: 'Hotel', href: 'hotels', current: false },
+  { name: 'Room', href: 'rooms', current: false },
   { name: 'User', href: 'user', current: false },
 ]
 
@@ -145,7 +145,7 @@ export default function Navbar() {
         {},
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("adminToken"),
           },
         }
         );
@@ -225,7 +225,9 @@ export default function Navbar() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="text-white">{name}</span>
+                  
+                        <span className="text-white">{name}</span>
+                      
           
             
                       
@@ -238,7 +240,7 @@ export default function Navbar() {
                     enterTo="transform opacity-100 scale-100"
                     leave="transition ease-in duration-75"
                     leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
+                    leaveTo="transform opacity-0 scale-95"      
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
@@ -269,7 +271,7 @@ export default function Navbar() {
                           <a
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            onClick={()=>{localStorage.clear()}}
+                            onClick={()=>{localStorage.clear("adminToken")}}
                           >
                           
                             Sign out

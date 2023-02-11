@@ -9,6 +9,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import Homepage from '../pages/Homepage';
 import ViewHotels from '../pages/viewHotels';
 import HotelInfo from '../pages/HotelInfo';
+import Navbar from '../components/navbar';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -18,7 +19,7 @@ export default function User() {
 
     
     
-
+{/* <Navbar/> */}
         <Routes>
         <Route exact path='/' element= {
           
