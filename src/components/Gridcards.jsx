@@ -3,10 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { getRoomData } from "../Api/userApi/UserRequest";
 
-
 export default function Gridcards({ hotel }) {
   const [room, setRoom] = useState([]);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   console.log(room, "Rooms");
 
@@ -37,6 +36,8 @@ export default function Gridcards({ hotel }) {
   return (
     <>
       {/* {hotel && */}
+      <section className="container mx-auto px-6 flex items-start justify-center py-10 bg-gray-600 ">
+
       <div className="w-full bg-gray-200 dark:bg-gray-900  py-10">
         <div className="container mx-auto px-6 flex items-start justify-center">
           <div className="w-full">
@@ -45,7 +46,6 @@ export default function Gridcards({ hotel }) {
               Available Rooms
             </h1>
             {room?.map((room) => (
-          
               <div className="mx-auto w-full p-5 lg:p-10 bg-white dark:bg-gray-800 border-2 mb-1 shadow rounded">
                 <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8">
                   <h1 className="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2 ">
@@ -99,12 +99,12 @@ export default function Gridcards({ hotel }) {
                       <div className="carousel-inner relative w-full overflow-hidden">
                         {/* {room?.map((room)=>( */}
 
-                          <div className="carousel-item active relative float-left w-full">
+                        <div className="carousel-item active relative float-left w-full">
                           <img
                             src={room.images[0]}
                             className="block w-full"
                             alt="..."
-                            />
+                          />
                           <div className="carousel-caption hidden md:block absolute text-center">
                             <h5 className="text-xl">
                               {/* First slide label */}
@@ -115,17 +115,17 @@ export default function Gridcards({ hotel }) {
                             </p>
                           </div>
                         </div>
-                            {/* ))} */}
+                        {/* ))} */}
                         <div className="carousel-item relative float-left w-full">
-                        <img
+                          <img
                             src={room.images[0]}
                             className="block w-full"
                             alt="..."
-                            />
+                          />
                           <div className="carousel-caption hidden md:block absolute text-center">
                             <h5 className="text-xl">
                               {/* Second slide label */}
-                              </h5>
+                            </h5>
                             <p>
                               {/* Some representative placeholder content for the
                               second slide. */}
@@ -133,11 +133,11 @@ export default function Gridcards({ hotel }) {
                           </div>
                         </div>
                         <div className="carousel-item relative float-left w-full">
-                        <img
+                          <img
                             src={room.images[0]}
                             className="block w-full"
                             alt="..."
-                            />
+                          />
                           <div className="carousel-caption hidden md:block absolute text-center">
                             <h5 className="text-xl">
                               {/* Third slide label */}
@@ -206,15 +206,18 @@ export default function Gridcards({ hotel }) {
                         Per Day
                       </h3>
                       <h2 className="mr-2 lg:mr-0 text-gray-600 dark:text-gray-400 text-xl lg:text-2xl font-bold">
-                      ₹{room.price}
+                        ₹{room.price}
                       </h2>
                     </div>
-                    
-                   <button  className="b state:{room:room}g-blue-100 p-2 rounded-xl "onClick={()=>{
-                  navigate('/booking',{state:{roomDetails:room}})
-                   }}>
-                    Book Now
-                   </button>
+
+                    <button
+                      className="bg-blue-100 p-2 rounded-xl"
+                      onClick={() => {
+                        navigate("/booking", { state: { roomDetails: room } });
+                      }}
+                    >
+                      Book Now
+                    </button>
                     {/* <div className="mr-24 flex lg:block flex-row-reverse items-center mb-4 lg:mb-0">
                                             <h3 className="text-indigo-700 dark:text-indigo-600 leading-6 text-lg">Expenses</h3>
                                             <h2 className="mr-2 lg:mr-0 text-gray-600 dark:text-gray-400 text-xl lg:text-2xl font-bold">$189,955</h2>
@@ -243,14 +246,12 @@ export default function Gridcards({ hotel }) {
                                     </div> */}
                 </div>
               </div>
-                ))}
+            ))}
             {/* Card code block end */}
           </div>
         </div>
       </div>
-
-          </>
+      </section>
+    </>
   );
-  
-
 }
