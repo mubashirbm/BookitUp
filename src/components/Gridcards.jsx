@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { getRoomData } from "../Api/userApi/UserRequest";
 
+
 export default function Gridcards({ hotel }) {
   const [room, setRoom] = useState([]);
+  const navigate=useNavigate()
 
   console.log(room, "Rooms");
 
@@ -35,18 +37,18 @@ export default function Gridcards({ hotel }) {
   return (
     <>
       {/* {hotel && */}
-      <div className="w-full bg-gray-200 dark:bg-gray-900 py-10">
+      <div className="w-full bg-gray-200 dark:bg-gray-900  py-10">
         <div className="container mx-auto px-6 flex items-start justify-center">
           <div className="w-full">
             {/* Card is full width. Use in 12 col grid for best view. */}
-            <h1 className="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2">
+            <h1 className="mr-12 text-xl lg:text-2xl mb-3 text-gray-800 dark:text-gray-100 font-bold lg:w-1/2 ">
               Available Rooms
             </h1>
             {room?.map((room) => (
           
-              <div className="mx-auto w-full p-5 lg:p-10 bg-white dark:bg-gray-800 shadow rounded">
+              <div className="mx-auto w-full p-5 lg:p-10 bg-white dark:bg-gray-800 border-2 mb-1 shadow rounded">
                 <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8">
-                  <h1 className="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2">
+                  <h1 className="mr-12 text-xl lg:text-2xl text-gray-800 dark:text-gray-100 font-bold lg:w-1/2 ">
                     {room.room}
                   </h1>
                   {/* <div className="flex flex-col md:flex-row items-start md:items-center">
@@ -115,11 +117,11 @@ export default function Gridcards({ hotel }) {
                         </div>
                             {/* ))} */}
                         <div className="carousel-item relative float-left w-full">
-                          <img
-                            src={room.images[2]}
+                        <img
+                            src={room.images[0]}
                             className="block w-full"
                             alt="..."
-                          />
+                            />
                           <div className="carousel-caption hidden md:block absolute text-center">
                             <h5 className="text-xl">
                               {/* Second slide label */}
@@ -131,11 +133,11 @@ export default function Gridcards({ hotel }) {
                           </div>
                         </div>
                         <div className="carousel-item relative float-left w-full">
-                          <img
-                            src={room.images[1]}
+                        <img
+                            src={room.images[0]}
                             className="block w-full"
                             alt="..."
-                          />
+                            />
                           <div className="carousel-caption hidden md:block absolute text-center">
                             <h5 className="text-xl">
                               {/* Third slide label */}
@@ -207,6 +209,12 @@ export default function Gridcards({ hotel }) {
                       ₹{room.price}
                       </h2>
                     </div>
+                    
+                   <button  className="b state:{room:room}g-blue-100 p-2 rounded-xl "onClick={()=>{
+                  navigate('/booking',{state:{roomDetails:room}})
+                   }}>
+                    Book Now
+                   </button>
                     {/* <div className="mr-24 flex lg:block flex-row-reverse items-center mb-4 lg:mb-0">
                                             <h3 className="text-indigo-700 dark:text-indigo-600 leading-6 text-lg">Expenses</h3>
                                             <h2 className="mr-2 lg:mr-0 text-gray-600 dark:text-gray-400 text-xl lg:text-2xl font-bold">$189,955</h2>
@@ -240,6 +248,9 @@ export default function Gridcards({ hotel }) {
           </div>
         </div>
       </div>
-    </>
+
+          </>
   );
+  
+
 }

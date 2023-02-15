@@ -1,26 +1,26 @@
+
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/navbar";
 import { getHotelData } from "../Api/userApi/UserRequest";
-import 'tw-elements';
+import "tw-elements";
 
 import Modal from "../components/Modal";
 import Gridcards from "../components/Gridcards";
 
 export default function HotelInfo() {
   const [hotel, setHotel] = useState("");
-console.log(hotel,"hhhhhhhhhhhhh")
+  console.log(hotel, "hhhhhhhhhhhhh");
   const location = useLocation();
   const data = location?.state?.hotelId;
   const Id = data.hotel._id;
   // console.log(data.hotel.images[0],"lllllllllllllll")
-  
 
   const getHotel = async (Id) => {
-      try {
-        console.log(Id,"same Id")
+    try {
+      console.log(Id, "same Id");
       const data = await getHotelData(Id);
-      console.log(data,"ppppppppppp")
+      console.log(data, "ppppppppppp");
       setHotel(data);
     } catch (err) {
       console.log(err);
@@ -33,214 +33,238 @@ console.log(hotel,"hhhhhhhhhhhhh")
   return (
     <>
       <Navbar />
-      <div className="container">
-      {/* <!-- component --> */}
-      
-<section className="text-gray-700 body-font overflow-hidden bg-white">
-  <div className="container px-5 py-24 mx-auto">
-    <div className="lg:w-4/5 mx-auto flex flex-wrap">
+      <div className=" w-full bg-gray-900 ">
+        {/* <!-- component --> */}
+        {hotel && (
+          <section className="container mx-auto px-6 flex items-start justify-center py-10 bg-gray-600 ">
+            <div className="mr-12 text-xl w-full lg:text-2xl text-gray-800 bg-gray-700 dark:text-gray-900 font-bold lg:w-1/2">
 
-        
-
-
-
-    
-
-
-    {hotel && 
-      <img alt="ecommerce" data-bs-toggle="modal" data-bs-target="#exampleModalCenteredScrollable" className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src={hotel.images[0]}/>
-    }
-      <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{hotel.hotel}</h1>
-        {/* <div className="flex mb-4">
-          <span className="flex items-center">
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-          </svg>
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-            </svg>
-            <span className="text-gray-600 ml-3">4 Reviews</span>
-          </span>
-          <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-          <a className="text-gray-500">
-          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-          </svg>
-          </a>
-          <a className="ml-2 text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-              </svg>
-              </a>
-              <a className="ml-2 text-gray-500">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-              </svg>
-              </a>
-              </span>
-            </div> */}
-        <p className="leading-relaxed">{hotel.description}</p>
-        {/* <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-          <div className="flex">
-            <span className="mr-3">Color</span>
-            <button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button className="border-2 border-gray-300 ml-1 bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>
-          </div>
-          <div className="flex ml-6 items-center">
-            <span className="mr-3">Size</span>
-            <div className="relative">
-              <select className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10">
-                <option>SM</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-              </select>
-              <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-  600 pointer-events-none flex items-center justify-center">
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4" viewBox="0 0 24 24">
-                  <path d="M6 9l6 6 6-6"></path>
-                  </svg>
-              </span>
+            <div
+              id="carouselExampleCaptions"
+              class="carousel slide relative "
+              data-bs-ride="carousel"
+              >
+              <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                  ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                  ></button>
               </div>
+              <div class="carousel-inner relative w-full overflow-hidden ">
+                <div class="carousel-item active relative float-left w-full ">
+                  {hotel.images && (
+                    <img
+                    src={hotel.images[2]}
+                      class="block w-screen"
+                      alt="..."
+                      />
+                      )}
+                </div>
+                <div class="carousel-item relative float-left w-full ">
+                  {hotel.images && (
+                    <img
+                    src={hotel.images[1]}
+                    class="block w-screen"
+                    alt="..."
+                    />
+                    )}
+                </div>
+                <div class="carousel-item relative float-left w-full ">
+                  {hotel.images && (
+                    <img
+                      src={hotel.images[0]}
+                      class="block w-screen"
+                      alt="..."
+                      />
+                      )}
+                </div>
               </div>
-            </div> */}
-        <br></br>
-        <hr></hr>
-        <div className="flex">
-          <span className="title-font font-medium text-2xl text-gray-900">You are in {hotel.location}</span>
-          {/* <but  ton className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Button</button> */}
-          {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-            </svg>
-          </button> */}
+              <button
+                class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev"
+                >
+                <span
+                  class="carousel-control-prev-icon inline-block bg-no-repeat"
+                  aria-hidden="true"
+                  ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next"
+                >
+                <span
+                  class="carousel-control-next-icon inline-block bg-no-repeat"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+
+            {/* CAROUSEL>>>>>>>>>>>>>>>>>> */}
+
+            <div className="flex flex-col w-full p-6 lg:w-2/3 md:p-8 lg:p-12">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-8 h-8 mb-8 dark:text-violet-400"
+                >
+                <path
+                  fillRule="evenodd"
+                  d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                  ></path>
+              </svg>
+              <h2 className="text-3xl font-semibold leading-none">
+                Modern solutions to all kinds of problems
+              </h2>
+              <p className="mt-4 mb-8 text-sm">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
+                voluptatum rem amet!
+              </p>
+              <button className="self-start px-10 py-3 text-lg font-medium rounded-3xl dark:bg-violet-400 dark:text-gray-900">
+                Get started
+              </button>
+            </div>
+
+            {/* >>>>>>>>>>>>>>>>>>>>>>>> */}
+            {/* </div> */}
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+          </section>
+        )}
       </div>
 
+      {/* {<Modal hotel={hotel} />} */}
 
+      {/* ////////////// */}
 
-{/* {<Modal hotel={hotel} />} */}
+      <div
+        className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        id="exampleModalCenteredScrollable"
+        tabindex="-1"
+        aria-labelledby="exampleModalCenteredScrollable"
+        aria-modal="true"
+        role="dialog"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable relative w-auto pointer-events-none">
+          <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+            <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+              <button
+                type="button"
+                className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body relative p-4">
+              <div>
+                <div
+                  id="carouselExampleIndicators"
+                  className="carousel slide relative"
+                  data-bs-ride="carousel"
+                >
+                  <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                    <button
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators"
+                      data-bs-slide-to="0"
+                      className="active"
+                      aria-current="true"
+                      aria-label="Slide 1"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators"
+                      data-bs-slide-to="1"
+                      aria-label="Slide 2"
+                    ></button>
+                    <button
+                      type="button"
+                      data-bs-target="#carouselExampleIndicators"
+                      data-bs-slide-to="2"
+                      aria-label="Slide 3"
+                    ></button>
+                  </div>
 
-
-{/* ////////////// */}
-
-<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenteredScrollable" tabindex="-1" aria-labelledby="exampleModalCenteredScrollable" aria-modal="true" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable relative w-auto pointer-events-none">
-    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-      <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-       
-        <button type="button"
-          class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-          data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body relative p-4">
-        <div>
-
-
-
-        <div id="carouselExampleIndicators" class="carousel slide relative" data-bs-ride="carousel">
-  <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="0"
-      class="active"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="1"
-      aria-label="Slide 2"
-    ></button>
-    <button
-      type="button"
-      data-bs-target="#carouselExampleIndicators"
-      data-bs-slide-to="2"
-      aria-label="Slide 3"
-    ></button>
-  </div>
-  
-  <div class="carousel-inner relative w-full overflow-hidden">
-
-  
-
-
-{hotel && hotel.images.map((item)=>(
-  <div class="carousel-item active float-left w-full">
-
-  <img
-  src={item.images}
-  class="block w-full"
-  alt="Wild Landscape"
-  />
-    </div>
-    ))}
-        
-       
-   
-   
-  </div>
-  <button
-    class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-
-
-        </div>
-
-
-      </div>
-      {/* <div
-        class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                  <div className="carousel-inner relative w-full overflow-hidden">
+                    {hotel &&
+                      hotel.images.map((item) => (
+                        <div className="carousel-item active float-left w-full">
+                          <img
+                            // src={item.images}
+                            className="block w-full"
+                            alt="Wild Landscape"
+                          />
+                        </div>
+                      ))}
+                  </div>
+                  <button
+                    className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      className="carousel-control-prev-icon inline-block bg-no-repeat"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      className="carousel-control-next-icon inline-block bg-no-repeat"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            {/* <div
+        className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
         
         
       </div> */}
-    </div>
-  </div>
-</div>
-{hotel &&
-  <Gridcards hotel={hotel}/>
-}
+          </div>
+        </div>
+      </div>
+      {/* <section className="dark:bg-gray-800 dark:text-gray-100"> */}
 
+      {/* ..... */}
 
-        
-
-
-
+      {/* //////// */}
+      {/* </section> */}
+      {hotel && <Gridcards hotel={hotel} />}
     </>
-    
   );
 }
+
+
+
+

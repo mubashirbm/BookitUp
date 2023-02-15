@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import AddHotel from "../pages/Admin/addHotel";
+import AddHotel from "../pages/Admin/AddHotel";
 import Home from "../pages/Admin/AdminHome";
 import Login from "../pages/Admin/Login";
 import Register from "../pages/Register";

@@ -36,7 +36,7 @@ console.log(HotelId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
               <div class="relative w-8 h-8 mr-3 rounded-full">
                 <img
                   class="object-cover w-full h-full rounded-full"
-                  src={hotel.imageUrls}
+                  src={hotel.images[0]}
                   alt="hotel"
                   loading="lazy"
                 />

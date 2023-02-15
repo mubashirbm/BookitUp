@@ -34,6 +34,12 @@ function ViewHotel() {
         <div className="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
           {/* <div class="w-full overflow-x-auto"> */}
         <h1 className=" text-white text-center text-lg font-semibold ">View Hotels</h1>
+        <button className="mt-4 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-600 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>{
+                  // editHotel(hotel._id)
+                  navigate('/admin/addHotel')
+                }}>
+                  Add New Hotel
+                </button>
           <table className="w-full mt-5">
             <thead className="bg-gray-50 border-b-2 border-stone-700 ">
               <tr className="b-white border-b-2 ">
@@ -57,12 +63,7 @@ function ViewHotel() {
             </tbody>
             
           </table>
-          <button className="mt-4 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-600 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>{
-                  // editHotel(hotel._id)
-                  navigate('/admin/addHotel')
-                }}>
-                  Add New Hotel
-                </button>
+          
           {/* </div> */}
         </div>
       </div>
