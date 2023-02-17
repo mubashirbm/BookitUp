@@ -46,3 +46,34 @@ export const getRoomData = async (hotelId) => {
     console.log(error);
   }
 };
+export const check=async (roomId)=>{
+  try{
+    console.log(roomId,"roomIdd")
+const data=await userApi.get(`/roomCheck/${roomId}`)
+console.log(data,"ddaaaaaaaaattttaaaa")
+return data
+  }catch(err){
+console.log(err)
+  }
+}
+export const updateDate=async(Id,UADate)=>{
+  try {
+    console.log(UADate)
+    const data=await userApi.patch(`/updateDate/${Id}`,UADate)
+    console.log(data,"Update Rooms")
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+export const checkDate=async(Id,UA)=>{
+  try {
+    console.log(UA,"1111111111")
+    const data=await userApi.post(`/checkDate/${Id}`,UA)
+    console.log(data,"check Date")
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+

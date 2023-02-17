@@ -11,6 +11,7 @@ import ViewHotels from '../pages/viewHotels';
 import HotelInfo from '../pages/HotelInfo';
 import Navbar from '../components/navbar';
 import Booking from '../pages/Booking';
+import Payment from '../pages/Payment';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -60,6 +61,13 @@ export default function User() {
           <ProtectedRoute>
 
             <Booking />
+          </ProtectedRoute>
+         
+      } />
+        <Route exact path='/payment' element= {
+          <ProtectedRoute>
+
+            <Payment />
           </ProtectedRoute>
          
       } />
