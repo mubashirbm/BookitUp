@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { BlockUser } from "../../Api/adminApi/getRequest";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
 
 export default function ListUsers({ Item, index }) {
   const [active, setActive] = useState(Item.isActive);
@@ -12,6 +16,41 @@ export default function ListUsers({ Item, index }) {
     await BlockUser(true, userId);
     setActive(true);
   };
+
+
+  const block = (userId) => {
+    confirmAlert({
+      title: 'Confirm to ',
+      message: 'Are you sure ! want to Block ?',
+      buttons: [
+        { 
+          label: 'Yes',
+          onClick: () => {blockAction(userId)}
+        },
+        {
+          label: 'No',
+        }
+      ]
+    });
+  };
+
+  const unBlock = (userId) => {
+    confirmAlert({
+      title: 'Confirm to ',
+      message: 'Are you sure ! want to Unblock ?',
+      buttons: [
+        { 
+          label: 'Yes',
+          onClick: () => {unblockAction(userId)}
+        },
+        {
+          label: 'No',
+        }
+      ]
+    });
+  };
+
+
   return (
     <>
       <tr className="b-white border-b-2 ">
@@ -23,7 +62,7 @@ export default function ListUsers({ Item, index }) {
           <button
             type="button"
             onClick={() => {
-              blockAction(Item._id);
+              block(Item._id);
             }}
             className="mt-4 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out"
           >
@@ -33,7 +72,7 @@ export default function ListUsers({ Item, index }) {
           <button
             type="button"
             onClick={() => {
-              unblockAction(Item._id);
+              unBlock(Item._id);
             }}
             className="mt-4 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-600 active:shadow-lg transition duration-150 ease-in-out"
           >

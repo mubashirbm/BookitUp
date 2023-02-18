@@ -6,12 +6,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import {addingRoom} from '../../Api/adminApi/postRequest'
 import { Descriptions } from "antd";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 export default function AddRoom() {
   const dispatch = useDispatch();
-
+const navigate=useNavigate()
   const locations = useLocation()
   const data = locations?.state?.hotelId;
   // console.log(data,"sfgvhbjnlklmvmnjbhv")
@@ -71,10 +71,7 @@ export default function AddRoom() {
           await addingRoom(addRoom,Id)).data
         console.log(result);
         toast.success(result.message);
-        setRoom("")
-        // setDescription("")
-        // setLocation("")
-        // setImage("")
+        navigate('/admin/rooms')
         dispatch(hideLoading());
       } catch (error) {
         console.log(error);
@@ -136,6 +133,13 @@ export default function AddRoom() {
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Description</label>
                 <textarea id="description" type="text" onChange={(e)=>setDescription(e.target.value)} value={description} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required></textarea>
             </div> */}
+                  <div className="flex">
+            {image.map((image) => (
+              
+        <img  className=" h-32 w-32" src={image} alt="Preview" />
+      ))}
+
+                </div>
             <div>
                 <label class="block text-sm font-medium text-white">
                 Image

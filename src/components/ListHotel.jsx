@@ -3,6 +3,12 @@ import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { deletingHotel } from "../Api/adminApi/postRequest";
 import { hotelById } from "../Api/adminApi/getRequest";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
+
+
 
 
 export default function ListHotel({ hotel }) {
@@ -13,11 +19,27 @@ export default function ListHotel({ hotel }) {
     try {
       console.log("deleting");
       await deletingHotel(HotelId);
+
       setVisible(false)
     } catch (error) {
       console.log(error);
     }
   }
+ const confirm=(HotelId)=>{
+  confirmAlert({
+
+    message: 'Do you want to delete your Hotel.',
+    buttons: [
+      { 
+        label: 'Yes',
+        onClick: () => {deletehotel(HotelId)}
+      },
+      {
+        label: 'No',
+      }
+    ]
+  });
+ };
   const editHotel=async (HotelId)=>{
     try{
       const data=await hotelById(HotelId)
@@ -80,7 +102,7 @@ console.log(HotelId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
                 className=" mt-4 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out" 
                 //  data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
                 onClick={() => { 
-                  deletehotel(hotel._id);
+                  confirm(hotel._id);
                 }}
               >
                 Delete

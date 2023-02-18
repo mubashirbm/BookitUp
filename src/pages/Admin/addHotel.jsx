@@ -61,6 +61,7 @@ export default function AddHotel() {
             setLocation("")
             setImage("")
             dispatch(hideLoading());
+            navigate('/admin/hotels')
           } catch (error) {
             console.log(error);
           }
@@ -149,13 +150,13 @@ export default function AddHotel() {
                   </p>
                 </div>
             </div>
-                {/* <div className="flex">
+                <div className="flex">
             {image.map((image, index) => (
               
         <img  className=" h-32 w-32"key={index} src={image} alt="Preview" />
       ))}
 
-                </div> */}
+                </div>
               </div>
         </div>
 

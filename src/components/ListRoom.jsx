@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { deletingRoom } from "../Api/adminApi/postRequest";
 import { roomById } from "../Api/adminApi/getRequest";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
 
 
 export default function ListRoom({ room }) {
@@ -18,6 +22,26 @@ export default function ListRoom({ room }) {
       console.log(error);
     }
   }
+
+
+  const confirm = (RoomId) => {
+    confirmAlert({
+     
+      message: 'Do you want to delete your Room.',
+      buttons: [
+        { 
+          label: 'Yes',
+          onClick: () => {deleteRoom(RoomId)}
+        },
+        {
+          label: 'No',
+        }
+      ]
+    });
+  };
+
+
+
   const editHotel=async (RoomId)=>{
     try{
       const data=await roomById(RoomId)
@@ -74,7 +98,7 @@ console.log(RoomId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
               <button
                 className="mt-4 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => {
-                  deleteRoom(room._id);
+                  confirm(room._id);
                 }}
               >
                 Delete
