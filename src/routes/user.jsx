@@ -12,6 +12,7 @@ import HotelInfo from '../pages/HotelInfo';
 import Navbar from '../components/navbar';
 import Booking from '../pages/Booking';
 import Payment from '../pages/Payment';
+import Invoice from '../pages/Invoice';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -38,9 +39,9 @@ export default function User() {
             <ViewHotels />
           
         } />
-        <Route exact path='/hm' element= {
+        <Route exact path='/invoice' element= {
           
-            <Homepage />
+            <Invoice />
           
         } />
         <Route exact path='/login' element= {

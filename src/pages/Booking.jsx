@@ -40,7 +40,7 @@ export default function Booking() {
     let Year = string[0];
     let month = string[1];
     let day = string[2];
-    let checkinFormat = Year + month + day;
+    let checkinFormat =parseInt( Year + month + day)
     setCheckin(checkinFormat);
   };
 
@@ -52,7 +52,7 @@ export default function Booking() {
     let month = string[1];
     let day = string[2];
 
-    let checkoutFormat = Year + month + day;
+    let checkoutFormat =parseInt( Year + month + day)
 
     if (checkoutFormat > checkin) {
       setCheckout(checkoutFormat);
@@ -68,10 +68,10 @@ export default function Booking() {
       UA.push(start);
       start++;
     }
-    let total = days * adults * room.price;
+    let total = days *adults * room.price;
     console.log(unavailable, "deeeeeeeee");
 
-    const D = {
+    let D = {
       UA,
       name,
       adults,
@@ -84,11 +84,11 @@ export default function Booking() {
     };
     console.log(D,"/??????????????????????????????");
     setRoomDetails(D,"1111111111111111111111111111111111111111111");
-    console.log(roomDetails, "deeeeeeeee");
     // console.log(details,'deeeeeeeee')
     // navigate('/payment',{state:{roomDet:{D}}})
     setPay(true);
   };
+  console.log(roomDetails, "deeeeeeeee");
 
   // setRoomDetails(details)
   // console.log(roomDetails,"roomDetails.UA,UAROOMDETAILS")
@@ -189,7 +189,7 @@ export default function Booking() {
                         // onChange={handleLocation}
                         className="border rounded-md p-2 text-sm"
                         onChange={(e) => {
-                          setAdult(e.target.value);
+                          setAdult(parseInt(e.target.value));
                         }}
                       >
                         <option>1</option>

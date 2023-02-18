@@ -76,4 +76,14 @@ export const checkDate=async(Id,UA)=>{
     console.log(error)
   }
 }
+export const bookRoom=async(Id,roomBook)=>{
+  try {
+    console.log(roomBook,"1111111111")
+    const data=await userApi.post(`/bookRoom/${Id}`,roomBook)
+    console.log(data,"check Date")
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
 
