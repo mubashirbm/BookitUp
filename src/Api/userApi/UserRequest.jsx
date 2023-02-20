@@ -4,6 +4,7 @@ import { userApi } from "../../Utils/Api";
 
 export const userRegister = async (fromData) => {
   try {
+    console.log(fromData,"fromdataaa")
     const { data } = await userApi.post("/register", fromData);
     return data;
   } catch (error) {
@@ -85,5 +86,15 @@ export const bookRoom=async(Id,roomBook)=>{
   } catch (error) {
     console.log(error)
   }
+}
+export const sendingEmail =async(mail)=>{
+  console.log(mail,"email")
+try {
+  const data=await userApi.post('/sendEmail',mail)
+  console.log(data,'Otp')
+  return data
+} catch (error) {
+  console.log(error)
+}
 }
 

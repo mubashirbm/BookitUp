@@ -13,6 +13,7 @@ import Navbar from '../components/navbar';
 import Booking from '../pages/Booking';
 import Payment from '../pages/Payment';
 import Invoice from '../pages/Invoice';
+import Otp from '../pages/Otp';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -40,13 +41,20 @@ export default function User() {
           
         } />
         <Route exact path='/invoice' element= {
-          
+          <ProtectedRoute>
+            
             <Invoice />
+          </ProtectedRoute>
+          
+        } />
+        <Route exact path='/otp' element= {
+          <ProtectedRoute>
+            <Otp />
+          </ProtectedRoute>
           
         } />
         <Route exact path='/login' element= {
           <ProtectedRoute>
-
             <Login />
           </ProtectedRoute>
           
