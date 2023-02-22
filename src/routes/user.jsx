@@ -14,6 +14,8 @@ import Booking from '../pages/Booking';
 import Payment from '../pages/Payment';
 import Invoice from '../pages/Invoice';
 import Otp from '../pages/Otp';
+import Table from '../pages/Table';
+import Mybooking from '../pages/Mybooking';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -30,6 +32,11 @@ export default function User() {
             <Home />
           
         } />
+        <Route exact path='/table' element= {
+          
+            <Table />
+          
+        } />
         <Route exact path='/hotelInfo' element= {
           
             <HotelInfo />
@@ -44,6 +51,13 @@ export default function User() {
           <ProtectedRoute>
             
             <Invoice />
+          </ProtectedRoute>
+          
+        } />
+        <Route exact path='/mybooking' element= {
+          <ProtectedRoute>
+            
+            <Mybooking />
           </ProtectedRoute>
           
         } />

@@ -13,26 +13,26 @@ function Home() {
   const [name, setName] = useState("");
   const [Hotel, setHotel] = useState([]);
   console.log(Hotel, "Hotels");
-  const getData = async () => {
-    try {
-      const { data } = await axios.post(
-        "/api/get-user-info-by-id",
-        // const user= getUser()
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
-      console.log(data.data, "get data data");
-      const name = data.data.name;
-      console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
-      setName(name);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const { data } = await axios.post(
+  //       "/api/get-user-info-by-id",
+  //       // const user= getUser()
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + localStorage.getItem("token"),
+  //         },
+  //       }
+  //     );
+  //     console.log(data.data, "get data data");
+  //     const name = data.data.name;
+  //     console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
+  //     setName(name);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const getAllHotel = async () => {
     try {
@@ -47,13 +47,13 @@ function Home() {
   };
 
   useEffect(() => {
-    getData();
+    // getData();
     getAllHotel();
   }, []);
-  // useEffect(() => {
-  //   getHotel()
+  useEffect(() => {
+    // getHotel()
 
-  // }, []);
+  }, []);
   return (
     <>
       <Navbar name={name} />

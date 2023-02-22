@@ -13,6 +13,7 @@ import EditHotel from "../pages/Admin/EditHotel"
 import AddRoom from "../pages/Admin/AddRoom";
 import ViewRoom from "../pages/Admin/ViewRoom"
 import EditRoom from "../pages/Admin/EditRoom"
+import BookingManage from "../pages/Admin/BookingManage";
 
 export default function Admin() {
   return (
@@ -40,6 +41,14 @@ export default function Admin() {
           path="/user"element={
             <ProtectedRoute>
               <UserManage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/booking"element={
+            <ProtectedRoute>
+              <BookingManage />
             </ProtectedRoute>
           }
         />

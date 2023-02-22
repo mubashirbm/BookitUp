@@ -60,9 +60,18 @@ function Register() {
     try {
       // navigate('/otp')
       const response=await sendingEmail({email})
-      const otp=response.data.text
-      console.log(otp,"response")
-      navigate('/otp',{state:{otp:otp,formData}})
+      if(response.data.text){
+console.log("success")
+toast.success("Check Your Email")
+        console.log(response,"response")
+        const otp=response.data.text
+        console.log(otp,"response")
+        navigate('/otp',{state:{otp:otp,formData}})
+      }else{
+
+        toast.error("Email Already Exist ")
+        console.log("error")
+      }
     } catch (error) {
       console.log(error)
     }

@@ -217,7 +217,7 @@ export default function AddHotel() {
                           }
                           }
                           type="file"
-                          multiple
+                          multiple  
                           class="sr-only"
                         />
                       </label>

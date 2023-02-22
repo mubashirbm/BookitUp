@@ -29,7 +29,7 @@ export default function UserManage() {
     try {
 
       //  dispatch(showLoading())
-      
+        
       const {data}=await getUser()
       setUsers(data)
       console.log(data,"jjjjjjjjjjjjjjjjj")
@@ -102,54 +102,9 @@ useEffect(() => {
 
 
 <div class="container mx-auto">
-            {/* <div class="flex flex-col">
-                <div class="w-full">
-                    <div class="p-8 border-b border-gray-200 shadow">
-                        <table class="divide-y divide-gray-300" id="dataTable">
-                            <thead class="bg-black">
-                              
-                                <tr>
-                                    <th class="px-6 py-2 text-xs text-white">
-                                        ID
-                                    </th>
-                                    <th class="px-6 py-2 text-xs text-white">
-                                        Name
-                                    </th>
-                                    <th class="px-6 py-2 text-xs text-white">
-                                        Email
-                                    </th>
-                                    
-                                    <th class="px-6 py-2 text-xs text-white">
-                                       Status
-                                    </th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-300">
-                            {users?.map((Item,index)=>{
-          return(
-            <ListUsers Item={Item} index={index}/>
-            )
-         })}
-                                
-                                
-                                
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> */}
+          
         </div>
 
-      {/* <Helmet> */}
-        {/* <script>
-            $(document).ready(function () {
-                $('#dataTable').DataTable()
-
-            });
-        </script> */}
-        {/* </Helmet> */}
        
             </>
   );
