@@ -65,7 +65,7 @@ export default function AddHotel() {
 
         console.log(addHotel, "frond add");
         const result =
-          // await axios.post("http://localhost:5000/admin/AddHotel", addHotel)).data;
+         
           (await addingHotel(addHotel)).data;
         console.log(result);
         toast.success(result.message);
