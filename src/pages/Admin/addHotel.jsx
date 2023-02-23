@@ -1,13 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { toast, Toast } from "react-hot-toast";
+import { toast} from "react-hot-toast";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { addingHotel } from "../../Api/adminApi/postRequest";
-import { Descriptions } from "antd";
 import { useNavigate } from "react-router-dom";
-import reactImagepreview from "react-imagepreview";
 export default function AddHotel() {
   const dispatch = useDispatch();
   const [hotel, setHotel] = useState("");
@@ -47,9 +45,7 @@ export default function AddHotel() {
       const imageUrl = response.data.url;
       images.push(imageUrl);
     }
-    const removeImage = (i) => {
-      setImage(image.filter((x) => x.name !== i));
-    };
+
     console.log(images);
     if (images.length) {
       const addHotel = {
