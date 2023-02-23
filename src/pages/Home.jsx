@@ -4,39 +4,42 @@ import { useEffect } from "react";
 // import Layout from "../components/Layout";
 import Navbar from "../components/navbar";
 import { useState } from "react";
-import  Banner from "../components/Banner";
+import Banner from "../components/Banner";
 import Search from "../components/search";
-
+// import hotels from '../Api/adminApi/getRequest'
+import { hotels } from "../Api/adminApi/getRequest";
+// import getUser from '../Api/userApi/getRequest'
 function Home() {
   const [name, setName] = useState("");
   const [Hotel, setHotel] = useState([]);
   console.log(Hotel, "Hotels");
-  const getData = async () => {
-    try {
-      const { data } = await axios.post(
-        "/api/get-user-info-by-id",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
-      console.log(data.data, "get data data");
-      const name = data.data.name;
-      console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
-      setName(name);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const { data } = await axios.post(
+  //       "/api/get-user-info-by-id",
+  //       // const user= getUser()
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + localStorage.getItem("token"),
+  //         },
+  //       }
+  //     );
+  //     console.log(data.data, "get data data");
+  //     const name = data.data.name;
+  //     console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
+  //     setName(name);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const getAllHotel = async () => {
     try {
       console.log("first");
-      const data = (await axios.get("http://localhost:5000/admin/getAllHotel"))
-        .data;
-      console.log(data, "llllllllllllll");
+      // const {data} = (await axios.get("http://localhost:5000/admin/getAllHotel"))
+      const data = await hotels();
+
       setHotel(data);
     } catch (error) {
       console.log(error);
@@ -44,30 +47,25 @@ function Home() {
   };
 
   useEffect(() => {
-    getData();
+    // getData();
     getAllHotel();
   }, []);
-  // useEffect(() => {
-  //   getHotel()
+  useEffect(() => {
+    // getHotel()
 
-  // }, []);
+  }, []);
   return (
     <>
       <Navbar name={name} />
-      <Banner/>
-      <div class='absolute left-72 bg-blue-100 bottom-0'>
-      <Search/>
-
+      <Banner />
+      <div class="absolute left-72 bg-blue-100 bottom-0">
+        <Search Hotel={Hotel} />
       </div>
-      <div class='flex px-20 py-20 gap-5'>
+      {/* <div class="flex px-20 py-20 gap-5">
         {Hotel?.map((hotel) => (
           <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-              <img
-                class="rounded-t-lg"
-                src={hotel.imageUrls[1]}
-                alt=""
-              />
+            <a href="">
+              <img class="rounded-t-lg" src={hotel.imageUrls} alt="" />
             </a>
             <div class="p-5">
               <a href="#">
@@ -76,8 +74,7 @@ function Home() {
                 </h5>
               </a>
               <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021
-                so far, in reverse chronological order.
+                {hotel.description}
               </p>
               <a
                 href="#"
@@ -101,8 +98,8 @@ function Home() {
             </div>
           </div>
         ))}
-      </div>
-     
+      </div> */}
+
       {/* <Banner /> */}
     </>
   );
