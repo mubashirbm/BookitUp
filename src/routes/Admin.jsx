@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import AddHotel from "../pages/Admin/AddHotel";
 import Home from "../pages/Admin/AdminHome";
 import Login from "../pages/Admin/Login";
-import Register from "../pages/Register";
+// import Register from "../pages/Register";
 import UserManage from "../pages/Admin/UserManage";
 import Navbar from "../components/admin/navbar";
 import PublicRoute from "../components/admin/PublicRoute";
