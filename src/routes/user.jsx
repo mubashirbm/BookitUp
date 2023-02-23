@@ -55,10 +55,10 @@ export default function User() {
           
         } />
         <Route exact path='/mybooking' element= {
-          <ProtectedRoute>
+          
             
             <Mybooking />
-          </ProtectedRoute>
+          
           
         } />
         <Route exact path='/otp' element= {

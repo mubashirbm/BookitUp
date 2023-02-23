@@ -113,7 +113,7 @@ export default function Booking() {
       toast.success("Its Available Continue Booking");
       setAvalable(available);
     } else {
-      toast.error("Date is Available");
+      toast.error("Date is Not Available");
       setAvalable("");
     }
   };

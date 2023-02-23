@@ -1,4 +1,4 @@
-// import addHotel from "../../pages/Admin/addHotel";
+
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import { adminAPI } from "../../Utils/Api";
 
