@@ -29,7 +29,7 @@
     "react-imagepreview": "^1.0.5",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.5",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^4.2.0",
     "redux-toolkit": "^1.1.2",
@@ -63,7 +63,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.2",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "webpack": "^5.75.0"
   }
 }

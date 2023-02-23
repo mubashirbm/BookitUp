@@ -3,13 +3,14 @@ import { useLocation } from 'react-router-dom'
 import { updateDate } from '../Api/userApi/UserRequest';
 import Paypal from './Paypal';
 
+
 export default function Payment() {
 
 
 
-    const location=useLocation()
-    const data=location?.state;
-    const Id=data.roomDet.D.roomId
+    var location=useLocation()
+    var data=location?.state;
+    var Id=data.roomDet.D.roomId
     console.log(data,"data")
     const UADate=data.roomDet.D.UA
     console.log(UADate,"det")
