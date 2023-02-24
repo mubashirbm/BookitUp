@@ -3,46 +3,41 @@ import { Link, useNavigate } from 'react-router-dom'
 import log from '../images/log.png'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
-import { useSelector } from 'react-redux'
 
 const Navbar = () => {
- 
   const navigate=useNavigate()
-  const name =useSelector((state)=>state)
 
-  console.log(name,"redux")
-
-  // const [name,setName]=useState("")
+  const [name,setName]=useState("")
   // console.log(name,"naaaameeee")
 
-  // const getData = async () => {
-  //   try {
-  //     const { data } = await axios.post(
-  //       "/api/get-user-info-by-id",
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + localStorage.getItem("token"),
-  //         },
-  //       }
-  //       );
-  //       console.log(data,'dataaaaa')
-  //     console.log(data.data, "get data data");
-    
-  //     const name = data.data.name;
-  //     console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
-      // setName(userName);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getData();
+  const getData = async () => {
+    try {
+      const { data } = await axios.post(
+        "/api/get-user-info-by-id",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+        );
+        console.log(data,'dataaaaa')
+      console.log(data.data, "get data data");
+      const name = data.data.name;
+      console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
+      setName(name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
 
-  // }, []);
+  }, []);
   // const [name,setname]=(name)
     return (
-        <div>  
+        <div>
+         
     <nav class="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 ">
       <div class="container flex flex-wrap items-center justify-between mx-auto">
         <a href="#" class="flex items-center">
@@ -70,10 +65,12 @@ const Navbar = () => {
                     <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                       <li>
                         <Link to={'/mybooking'}>
-                        <a href="" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Booking</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Booking</a>
                         </Link>
                       </li>
-                     
+                      <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >Previous Booking</a>
+                      </li>
                       <li
                       onClick={()=>{localStorage.clear("token") 
                         
@@ -88,15 +85,10 @@ const Navbar = () => {
                 </div>
             </li>
             <li className='text-white'>
-              <Link to='/login' class=" block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" aria-current="page">
-              LogIn/signUp
-              </Link>
-            </li>
-            {/* <li className='text-white'>
               {name?name:<Link to='/login' class=" block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" aria-current="page">
               LogIn/signUp
               </Link>}
-            </li> */}
+            </li>
            
           </ul>
         </div>

@@ -3,16 +3,22 @@ import { Await, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "flowbite-datepicker";
 import { check } from "../Api/userApi/UserRequest";
+import axios from "axios";
 import { checkDate } from "../Api/userApi/UserRequest";
 import { toast } from "react-hot-toast";
 import Paypal from "./Paypal";
+import { useSelector } from "react-redux";
 
 export default function Booking() {
   const navigate = useNavigate();
   const [room, setRoom] = useState("");
   const location = useLocation();
   const Room = location.state.roomDetails;
+  // const userId =useSelector((state)=>state)
 
+  // console.log(userId,"user details from Ridux")
+
+const [userId,setId]=useState("")
   const [checkin, setCheckin] = useState("");
   const [available, setAvalable] = useState(false);
   console.log(checkin, "checkin");
@@ -33,6 +39,30 @@ export default function Booking() {
   const [pay, setPay] = useState(false);
 
   let days = checkout - checkin;
+
+
+
+
+  const getId = async () => {
+    try {
+      const { data } = await axios.post(
+        "/api/get-user-info-by-id",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+        );
+        console.log(data,'dataaaaa')
+      console.log(data.data, "get data data");
+      const userId = data.data._id;
+      console.log(userId, "nnnnnnnnnnnnnaaaaaaaaaam");
+      setId(userId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleCheckin = (e) => {
     let Checkin = e.target.value;
@@ -72,7 +102,7 @@ export default function Booking() {
     console.log(unavailable, "deeeeeeeee");
 
     let D = {
-      // userId,
+      userId,
       UA,
       name,
       adults,
@@ -82,6 +112,8 @@ export default function Booking() {
       total,
       checkin,
       checkout,
+      
+      
 
     };
     console.log(D,"/??????????????????????????????");
@@ -124,6 +156,7 @@ export default function Booking() {
   useEffect(() => {
     if (Room) {
       setRoom(Room);
+      getId()
     }
   }, []);
   return (

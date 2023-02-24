@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { bookRoom } from "../Api/userApi/UserRequest";
 
 
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+const PayPalButton = window.paypal.Buttons.driver("react", { React,ReactDOM });
 
 
 

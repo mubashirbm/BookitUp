@@ -1,6 +1,7 @@
-// import { ColumnDirective, ColumnsDirective,  Inject, GridComponent } from '@syncfusion/ej2-react-grids';
-import * as React from 'react';
-// import { data } from './datasource';
+import React from "react";
+import { BlockUser } from "../Api/adminApi/getRequest";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import {
     Inject,
     GridComponent,
@@ -21,27 +22,88 @@ import { useEffect } from 'react';
   
   // const data=[{username:"uhnhu",email:'njdsnkgshdigd',status:'blocked',Actions:'hhdfjdi'},{username:"uhnhu",email:'njdsnkgshdigd',status:'blocked',Actions:'hhdfjdi'},{username:"uhnhu",email:'njdsnkgshdigd',status:'blocked',Actions:'hhdfjdi'}]
   // console.log(data)
-
-
-
-
-
   const [users,setUsers]=useState([])
+  const [change, setChange] = useState(false);
   const dispatch = useDispatch()
-
-
-  const getUsers=async()=>{
-    try {
-
-      //  dispatch(showLoading())
-      
-      const {data}=await getUser()
-      setUsers(data)
-      console.log(data,"jjjjjjjjjjjjjjjjj")
-    } catch (error) {
-      
+  useEffect(()=>{
+    const getUsers=async()=>{
+      try {
+        const {data}=await getUser()
+        setUsers(data)
+        console.log(data,"jjjjjjjjjjjjjjjjj")
+      } catch (error) {
+        
+      }
     }
-  }
+    getUsers()
+  },[change])
+
+  
+  const gridUserStatus = async(params, id) => {
+    console.log(params, id, "paraamsssssssss");
+
+      if(params.isActive === true){
+      console.log(id,"llllllllll")
+      const block = (id) => {
+        console.log('hello ');
+        confirmAlert({
+          title: 'Confirm to ',
+          message: 'Are you sure ! want to Block ?',
+          buttons: [
+            { 
+              label: 'Yes',
+              onClick: () => {blockAction(id)}
+            },
+            {
+              label: 'No',
+            }
+          ]
+        });
+      };
+      block(id)
+        
+    }else{
+      const unBlock = (userId) => {
+        confirmAlert({
+          title: 'Confirm to ',
+          message: 'Are you sure ! want to Unblock ?',
+          buttons: [
+            { 
+              label: 'Yes',
+              onClick: () => {unblockAction(userId)}
+            },
+            {
+              label: 'No',
+            }
+          ]
+        });
+
+      };
+      unBlock(id)
+        // setTimeout(() => setChange(prevState => !prevState), 1000);
+    }
+
+    const blockAction = async (userId) => {
+      console.log(userId,"User Id")
+      await BlockUser(false, userId);
+      // setActive(false);
+      setTimeout(() => setChange(prevState => !prevState), 1000);
+      //  dispatch(hideLoading())
+    };
+    const unblockAction = async (userId) => {
+      await BlockUser(true, userId);
+      // setActive(true);
+      setTimeout(() => setChange(prevState => !prevState), 1000);
+    };
+
+  };
+
+
+
+  
+
+
+  
 
     const titleGrid = [
         {
@@ -52,7 +114,7 @@ import { useEffect } from 'react';
         },
         { field: "email", headerText: "Email", width: "170", textAlign: "Center" },
         {
-          field: "status",
+          field: "isActive",
           headerText: "Status",
           width: "135",
           format: "yMd",
@@ -61,6 +123,14 @@ import { useEffect } from 'react';
         {
           field: "Actions",
           headerText: "Actions",
+          template: (params) => {
+            return (
+              <button style={{ background: "#03C9D7" }} className="text-gray-500 py-1 px-2 capitalize rounded-2xl text-md"
+                onClick={() => gridUserStatus(params, params._id)}>
+                {params.isActive === true ? "Block" : "Unblock" }
+              </button>
+            );
+          },
           // template: gridUserStatus,
           width: "120",
           textAlign: "Center",
@@ -69,10 +139,7 @@ import { useEffect } from 'react';
 
 
 
-      useEffect(() => {
-        getUsers()
-       
-      }, []);
+      
       
 
     return <GridComponent dataSource={users} width="auto"
