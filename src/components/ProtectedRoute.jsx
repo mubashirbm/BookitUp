@@ -46,9 +46,9 @@ const { user } = useSelector((state) => state.user);
   }, [user]);
 
   if (localStorage.getItem("token")) {
-    return <Navigate to= '/'/>;
-  } else {
     return props.children;
+  } else {
+    return <Navigate to= '/'/>;
   }
 }
 

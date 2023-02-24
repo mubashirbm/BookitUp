@@ -13,6 +13,7 @@ function Home() {
   const [name, setName] = useState("");
   const [Hotel, setHotel] = useState([]);
   console.log(Hotel, "Hotels");
+  console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
   // const getData = async () => {
   //   try {
   //     const { data } = await axios.post(

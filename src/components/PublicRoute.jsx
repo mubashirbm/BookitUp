@@ -6,7 +6,7 @@ function  PublicRoute(props) {
         return props.children;
       } else {
         
-        return  <Navigate to="/" />;
+        return  <Navigate to="/ " />;
       }
 }
 

@@ -56,14 +56,16 @@ function Login() {
           toast.error("User Does not exist");
           toast("redirecting to  home page admin");
           console.log("admin")
-          localStorage.setItem("token", response);
+          // localStorage.setItem("token", response.data);
           navigate("/login");
         }else{
-          dispatch(setUser(response.user))
           console.log(response.user,"user DETAILS")
           toast.success(response.message);
           toast("redirecting to home page");
-          console.log("user")
+          console.log(response.user,"user")
+          console.log(response.data,"kasarrrrrrrrrrrrrrrrrrrrrrr")
+          dispatch(setUser(response?.user))
+          console.log("insided Dispatch")
           localStorage.setItem("token", response.data);
           navigate("/");
         }

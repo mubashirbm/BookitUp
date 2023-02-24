@@ -68,23 +68,23 @@ export default function User() {
           
         } />
         <Route exact path='/login' element= {
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <Login />
-          </ProtectedRoute>
+          // {/* </ProtectedRoute> */}
           
       } />
         <Route exact path='/register' element= {
-          <ProtectedRoute>
+          // <ProtectedRoute>
 
             <Register />
-          </ProtectedRoute>
+          // {/* </ProtectedRoute> */}
          
       } />
         <Route exact path='/booking' element= {
           // <ProtectedRoute>
 
             <Booking />
-          // {/* </ProtectedRoute> */}
+          // </ProtectedRoute>
          
       } />
         <Route exact path='/payment' element= {

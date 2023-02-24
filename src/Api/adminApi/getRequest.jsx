@@ -37,3 +37,8 @@ export const roomById=async(roomId)=>{
     console.log(data)
     return data
 }
+export const getAllBookings=async ()=>{
+    const {data}=await adminAPI.get('/getAllBooking')
+    console.log(data,'Booking Details')
+    return data
+}
