@@ -36,16 +36,17 @@ export default function HotelInfo() {
       <div className=" w-full  ">
         {/* <!-- component --> */}
         {hotel && (
-        <section className="container mx-auto px-6 flex items-start justify-center py-10">
+        <section className="container mx-auto px-6 flex items-start justify-center py-10  text-gray-800 bg-gray-300 dark:text-gray-900 font-bold ">
           <div className="w-full    py-10">
           <h1 className="text-black text-center text-4xl">Hotel Details</h1>
+          <br />
             <div className="container mx-auto px-6 flex items-start justify-center">
               <div className="w-full">
+                  <div className="mx-auto w-full p-5 lg:p-10   mb-1 shadow rounded">
                       <h1 className="mr-12 text-xl lg:text-2xl text-black dark:text-
                       black font-bold lg:w-1/2 ">
                         {hotel.hotel}
                       </h1>
-                  <div className="mx-auto w-full p-5 lg:p-10   mb-1 shadow rounded">
                     <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8">
               
                     </div>
@@ -162,19 +163,25 @@ export default function HotelInfo() {
                       <div className="lg:pl-8 w-full lg:w-1/2 flex flex-col lg:flex-row items-start lg:items-center">
                         <div className="mr-12 flex lg:block items-center lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
                           <h2 className="text-black  font-bold text-xl lg:text-2xl mb-2 leading-6  lg:text-center">
-                            Description
+                            
+                            <span>Description</span>
+                            <br />
+                            <br />
+                            <br />
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type s
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type s
+
                           </h2>
                           <p className="ml-2 lg:ml-0 text-black text-xl leading-5 text">
-                            {hotel.description}
+                        
                           </p>
                         </div>
                      
                       </div>
-                    </div>
+                                        </div>
                    
                     <div className="flex flex-col lg:flex-row items-start lg:items-center">
                       
-                    
                     </div>
                   </div>
                

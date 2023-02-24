@@ -14,23 +14,21 @@ export default function AddRoom() {
 const navigate=useNavigate()
   const locations = useLocation()
   const data = locations?.state?.hotelId;
-  // console.log(data,"sfgvhbjnlklmvmnjbhv")
+ 
   let Id=data.hotel._id
   console.log(Id,"Id")
-  //   const [hotel, setHotel] = useState("");
-  
-  //   console.log(hotel);
+ 
   const [room, setRoom] = useState("");
-  // const [bed, setBed] = useState("");
+  const [bed,setBed] = useState("");
+  const [wifi, setWifi] = useState("");
+  // const [, setBed] = useState("");
   const [price, setPrice] = useState("");
-  // const [hotelId,setHotelId]=useState("")
-  // setHotelId(Id)
-  // console.log(hotelId,"hotel Id  in SetHotelId")
-  //   console.log(location);
+  const [laundry, setLaundry] = useState("");
+  const [AC, setAC] = useState("");
+  
   const [description, setDescription] = useState("");
   const [image, setImage] = useState([])
-  // const [ImageUrl2, setImageUrl2] = useState("");
-  //   console.log(description);
+ 
   const cloudAPI = 'dxrzjyxr8'
   const addRoom = async (e) => {
     e.preventDefault();
@@ -58,6 +56,10 @@ const navigate=useNavigate()
         price,
         description,
         images,
+        laundry,
+        AC,
+        bed,
+        wifi
       };
     
   
@@ -67,7 +69,7 @@ const navigate=useNavigate()
         console.log(addRoom, "frond add");
         const result = (
             
-          // await axios.put("http://localhost:5000/admin/AddHotel", addHotel)).data;
+
           await addingRoom(addRoom,Id)).data
         console.log(result);
         toast.success(result.message);
@@ -77,7 +79,7 @@ const navigate=useNavigate()
         console.log(error);
       }
     }
-    // console.log(response);
+
   
 
   }
@@ -100,16 +102,44 @@ const navigate=useNavigate()
                 <label class="text-white dark:text-gray-200" for="emailAddress">Description</label>
                 <input id="description" name="description"  type="text" value={description} onChange={(e)=>setDescription(e.target.value)} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"required />
             </div>
-{/* 
-            <div>
-                <label class="text-white dark:text-gray-200" for="password">No of Bathrooms</label>
-                <input id="password" name="Bathroom" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
+
 
             <div>
                 <label class="text-white dark:text-gray-200" for="passwordConfirmation">Price</label>
-                <input id="passwordConfirmation" type="number" value={price} onChange={(e)=>setPrice(e.target.value)} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
+                <input id="price" type="number" value={price} onChange={(e)=>setPrice(e.target.value)} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
             </div>
+            <div>
+                <label class="text-white dark:text-gray-200" for="laundry">Air Condition</label>
+                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" value={AC} onChange={(e)=>setAC(e.target.value)}  required>
+                    <option  >Available</option>
+                    <option  >Not Available</option>
+                    </select>
+
+            </div>
+            <div>
+                <label class="text-white dark:text-gray-200" for="laundry">Bed</label>
+                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" value={bed} onChange={(e)=>setBed(e.target.value)}  required>
+                    <option  >Queen Bed</option>
+                    <option  >Double Bed</option>
+                    </select>
+
+            </div>
+            <div>
+                <label class="text-white dark:text-gray-200" for="laundry">Wifi </label>
+                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" value={wifi} onChange={(e)=>setWifi(e.target.value)}  required>
+                    <option  >Available</option>
+                    <option  >Not Available</option>
+                    </select>
+
+            </div>
+            <div>
+                <label class="text-white dark:text-gray-200" for="category">Laundry Services</label>
+                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" value={laundry} onChange={(e)=>setLaundry(e.target.value)}  required>
+                    <option  >Available</option>
+                    <option  >Not Available</option>
+                    </select>
+                
+            </div> 
 {/*         
            <div>
                 <label class="text-white dark:text-gray-200" for="category">Category</label>

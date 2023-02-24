@@ -16,6 +16,7 @@ const navigation = [
   { name: 'Hotel', href: 'hotels', current: false },
   { name: 'Room', href: 'rooms', current: false },
   { name: 'User', href: 'user', current: false },
+  { name: 'Booking', href: 'booking', current: false },
 ]
 
 function classNames(...classes) {
