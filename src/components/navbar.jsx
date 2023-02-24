@@ -3,9 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import log from '../images/log.png'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const navigate=useNavigate()
+  const userName =useSelector((state)=>state)
+  console.log(userName,"redux")
 
   const [name,setName]=useState("")
   // console.log(name,"naaaameeee")
@@ -23,6 +26,7 @@ const Navbar = () => {
         );
         console.log(data,'dataaaaa')
       console.log(data.data, "get data data");
+    
       const name = data.data.name;
       console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
       setName(name);

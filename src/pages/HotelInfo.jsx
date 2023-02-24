@@ -33,126 +33,158 @@ export default function HotelInfo() {
   return (
     <>
       <Navbar />
-      <div className=" w-full bg-gray-900 ">
+      <div className=" w-full  ">
         {/* <!-- component --> */}
         {hotel && (
-          <section className="container mx-auto px-6 flex items-start justify-center py-10 bg-gray-600 ">
-            <div className="mr-12 text-xl w-full lg:text-2xl text-gray-800 bg-gray-700 dark:text-gray-900 font-bold lg:w-1/2">
-
-            <div
-              id="carouselExampleCaptions"
-              class="carousel slide relative "
-              data-bs-ride="carousel"
-              >
-              <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleCaptions"
-                  data-bs-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Slide 1"
-                  ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleCaptions"
-                  data-bs-slide-to="1"
-                  aria-label="Slide 2"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleCaptions"
-                  data-bs-slide-to="2"
-                  aria-label="Slide 3"
-                  ></button>
+        <section className="container mx-auto px-6 flex items-start justify-center py-10">
+          <div className="w-full    py-10">
+          <h1 className="text-black text-center text-4xl">Hotel Details</h1>
+            <div className="container mx-auto px-6 flex items-start justify-center">
+              <div className="w-full">
+                      <h1 className="mr-12 text-xl lg:text-2xl text-black dark:text-
+                      black font-bold lg:w-1/2 ">
+                        {hotel.hotel}
+                      </h1>
+                  <div className="mx-auto w-full p-5 lg:p-10   mb-1 shadow rounded">
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8">
+              
+                    </div>
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center">
+                      <div className="w-full lg:w-1/2 pr-0 lg:pr-48">
+                       
+                        <div
+                          id="carouselExampleCaptions"
+                          class="carousel slide relative"
+                          data-bs-ride="carousel"
+                        >
+                          <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                            <button
+                              type="button"
+                              data-bs-target="#carouselExampleCaptions"
+                              data-bs-slide-to="0"
+                              className="active"
+                              aria-current="true"
+                              aria-label="Slide 1"
+                            ></button>
+                            <button
+                              type="button"
+                              data-bs-target="#carouselExampleCaptions"
+                              data-bs-slide-to="1"
+                              aria-label="Slide 2"
+                            ></button>
+                            <button
+                              type="button"
+                              data-bs-target="#carouselExampleCaptions"
+                              data-bs-slide-to="2"
+                              aria-label="Slide 3"
+                            ></button>
+                          </div>
+                          <div className="carousel-inner relative w-full overflow-hidden">
+                            {/* {room?.map((room)=>( */}
+  
+                            <div className="carousel-item active relative float-left w-full">
+                              <img
+                                src={hotel.images[0]}
+                                className="block w-full"
+                                alt="..."
+                              />
+                              <div className="carousel-caption hidden md:block absolute text-center">
+                                <h5 className="text-xl">
+                                  {/* First slide label */}
+                                </h5>
+                                <p>
+                                  {/* Some representative placeholder content for the
+                                first slide. */}
+                                </p>
+                              </div>
+                            </div>
+                            {/* ))} */}
+                            <div className="carousel-item relative float-left w-full">
+                              <img
+                                src={hotel.images[1]}
+                                className="block w-full"
+                                alt="..."
+                              />
+                              <div className="carousel-caption hidden md:block absolute text-center">
+                                <h5 className="text-xl">
+                                  {/* Second slide label */}
+                                </h5>
+                                <p>
+                                  {/* Some representative placeholder content for the
+                                second slide. */}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="carousel-item relative float-left w-full">
+                              <img
+                                src={hotel.images[2]}
+                                className="block w-full"
+                                alt="..."
+                              />
+                              <div className="carousel-caption hidden md:block absolute text-center">
+                                <h5 className="text-xl">
+                                  {/* Third slide label */}
+                                </h5>
+                                <p>
+                                  {/* Some representative placeholder content for the
+                                third slide. */}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <button
+                            className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                            type="button"
+                            data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev"
+                          >
+                            <span
+                              className="carousel-control-prev-icon inline-block bg-no-repeat"
+                              aria-hidden="true"
+                            ></span>
+                            <span className="visually-hidden">Previous</span>
+                          </button>
+                          <button
+                            className="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                            type="button"
+                            data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next"
+                          >
+                            <span
+                              className="carousel-control-next-icon inline-block bg-no-repeat"
+                              aria-hidden="true"
+                            ></span>
+                            <span className="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                        {/* ////////////////////////// */}
+                      </div>
+                      <div className="lg:pl-8 w-full lg:w-1/2 flex flex-col lg:flex-row items-start lg:items-center">
+                        <div className="mr-12 flex lg:block items-center lg:mr-6 xl:mr-12 mt-5 lg:mt-0">
+                          <h2 className="text-black  font-bold text-xl lg:text-2xl mb-2 leading-6  lg:text-center">
+                            Description
+                          </h2>
+                          <p className="ml-2 lg:ml-0 text-black text-xl leading-5 text">
+                            {hotel.description}
+                          </p>
+                        </div>
+                     
+                      </div>
+                    </div>
+                   
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center">
+                      
+                    
+                    </div>
+                  </div>
+               
+                {/* Card code block end */}
               </div>
-              <div class="carousel-inner relative w-full overflow-hidden ">
-                <div class="carousel-item active relative float-left w-full ">
-                  {hotel.images && (
-                    <img
-                    src={hotel.images[2]}
-                      class="block w-screen"
-                      alt="..."
-                      />
-                      )}
-                </div>
-                <div class="carousel-item relative float-left w-full ">
-                  {hotel.images && (
-                    <img
-                    src={hotel.images[1]}
-                    class="block w-screen"
-                    alt="..."
-                    />
-                    )}
-                </div>
-                <div class="carousel-item relative float-left w-full ">
-                  {hotel.images && (
-                    <img
-                      src={hotel.images[0]}
-                      class="block w-screen"
-                      alt="..."
-                      />
-                      )}
-                </div>
-              </div>
-              <button
-                class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev"
-                >
-                <span
-                  class="carousel-control-prev-icon inline-block bg-no-repeat"
-                  aria-hidden="true"
-                  ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next"
-                >
-                <span
-                  class="carousel-control-next-icon inline-block bg-no-repeat"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
-
-            {/* CAROUSEL>>>>>>>>>>>>>>>>>> */}
-
-            <div className="flex flex-col w-full p-6 lg:w-2/3 md:p-8 lg:p-12">
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-8 h-8 mb-8 dark:text-violet-400"
-                >
-                <path
-                  fillRule="evenodd"
-                  d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                  ></path>
-              </svg> */}
-              <h2 className="text-3xl font-semibold leading-none text-blue-100">
-                {hotel.hotel}
-              </h2>
-              <p className="mt-4 mb-8 text-sm text-blue-100">
-                {hotel.description}
-              </p>
-              {/* <button className="self-start px-10 py-3 text-lg font-medium rounded-3xl dark:bg-violet-400 dark:text-gray-900">
-                Get started
-              </button> */}
+          </div>
+        </section>
+             )}
             </div>
-
-            {/* >>>>>>>>>>>>>>>>>>>>>>>> */}
-            {/* </div> */}
-        </div>
-          </section>
-        )}
-      </div>
 
       {/* {<Modal hotel={hotel} />} */}
 

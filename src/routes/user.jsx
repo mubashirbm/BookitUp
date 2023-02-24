@@ -48,10 +48,10 @@ export default function User() {
           
         } />
         <Route exact path='/invoice' element= {
-          <ProtectedRoute>
+          // <ProtectedRoute>
             
             <Invoice />
-          </ProtectedRoute>
+          // {/* </ProtectedRoute> */}
           
         } />
         <Route exact path='/mybooking' element= {
@@ -62,9 +62,9 @@ export default function User() {
           
         } />
         <Route exact path='/otp' element= {
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <Otp />
-          </ProtectedRoute>
+          // {/* </ProtectedRoute> */}
           
         } />
         <Route exact path='/login' element= {
@@ -81,17 +81,17 @@ export default function User() {
          
       } />
         <Route exact path='/booking' element= {
-          <ProtectedRoute>
+          // <ProtectedRoute>
 
             <Booking />
-          </ProtectedRoute>
+          // {/* </ProtectedRoute> */}
          
       } />
         <Route exact path='/payment' element= {
-          <ProtectedRoute>
+          // <ProtectedRoute>
 
             <Payment />
-          </ProtectedRoute>
+          // {/* </ProtectedRoute> */}
          
       } />
     </Routes>

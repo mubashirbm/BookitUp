@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice"
 import { userLogin } from '../Api/userApi/UserRequest';
 import validator from 'validator';
+import { setUser } from '../redux/userSlice';
 function Login() {
 
 
@@ -44,6 +45,7 @@ function Login() {
       dispatch(showLoading());
 
       const response = await userLogin({email,Password})
+      console.log(response,"response,,,,,,,,,,,,,,,,,,")
       
       dispatch(hideLoading());
 
@@ -57,8 +59,8 @@ function Login() {
           localStorage.setItem("token", response);
           navigate("/login");
         }else{
-
-          
+          dispatch(setUser(response.user))
+          console.log(response.user,"user DETAILS")
           toast.success(response.message);
           toast("redirecting to home page");
           console.log("user")
@@ -71,6 +73,7 @@ function Login() {
         toast.error(response.message);
       }
     } catch (error) {
+      // console.log(error)
       dispatch(hideLoading());
       toast.error("something went wrong");
     }

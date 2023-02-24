@@ -72,6 +72,7 @@ export default function Booking() {
     console.log(unavailable, "deeeeeeeee");
 
     let D = {
+      // userId,
       UA,
       name,
       adults,
@@ -81,6 +82,7 @@ export default function Booking() {
       total,
       checkin,
       checkout,
+
     };
     console.log(D,"/??????????????????????????????");
     setRoomDetails(D,"1111111111111111111111111111111111111111111");
