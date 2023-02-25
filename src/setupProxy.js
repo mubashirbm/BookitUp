@@ -5,7 +5,7 @@ module.exports = function(app) {
     '/api',
     createProxyMiddleware({
       // target: 'http://localhost:5000',
-      target: 'https://api.fitzone.fun',
+      target: 'http://api.fitzone.fun',
       changeOrigin: true,
     })
   );
