@@ -4,8 +4,8 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      // target: 'http://localhost:5000',
-      target: 'http://api.fitzone.fun',
+      target: 'http://localhost:5000',
+      // target: 'http://api.fitzone.fun',
       changeOrigin: true,
     })
   );
