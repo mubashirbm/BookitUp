@@ -17,10 +17,10 @@ const { user } = useSelector((state) => state.user);
       dispatch(showLoading())
       const response = await axios.post(
         "/api/user/get-user-info-by-id",
-        { token: localStorage.getItem("token") },
+        { token: localStorage.getItem("userToken") },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
         }
       );
@@ -45,7 +45,7 @@ const { user } = useSelector((state) => state.user);
     }
   }, [user]);
 
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem("userToken")) {
     return <Navigate to= '/'/>;
   } else {
     return props.children;

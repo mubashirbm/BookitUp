@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate } from 'react-router-dom';
 
 function  PublicRoute(props) {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("userToken")) {
         return props.children;
       } else {
         

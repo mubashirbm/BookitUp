@@ -33,15 +33,15 @@ export default function HotelInfo() {
   return (
     <>
       <Navbar />
-      <div className=" w-full  ">
+      <div className=" w-full   ">
         {/* <!-- component --> */}
         {hotel && (
         <section className="container mx-auto px-6 flex items-start justify-center py-10  text-gray-800 bg-gray-300 dark:text-gray-900 font-bold ">
-          <div className="w-full    py-10">
+          <div className="w-full py-10 ">
           <h1 className="text-black text-center text-4xl">Hotel Details</h1>
           <br />
-            <div className="container mx-auto px-6 flex items-start justify-center">
-              <div className="w-full">
+            <div className="container mx-auto px-6 flex  items-start justify-center">
+              <div className="w-full ">
                   <div className="mx-auto w-full p-5 lg:p-10   mb-1 shadow rounded">
                       <h1 className="mr-12 text-xl lg:text-2xl text-black dark:text-
                       black font-bold lg:w-1/2 ">
@@ -50,7 +50,7 @@ export default function HotelInfo() {
                     <div className="flex flex-col lg:flex-row items-start lg:items-center mb-8">
               
                     </div>
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center">
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center ">
                       <div className="w-full lg:w-1/2 pr-0 lg:pr-48">
                        
                         <div

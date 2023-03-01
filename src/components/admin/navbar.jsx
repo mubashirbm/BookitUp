@@ -26,12 +26,12 @@ function classNames(...classes) {
 export default function Navbar() {
 
   const [name,setName]=useState("")
-  // console.log(name,"naaaameeee")
+  console.log(name,"naaaameeee")
 
   const getData = async () => {
     try {
       const { data } = await axios.post(
-        "/api/get-user-info-by-id",
+        "/api/get-admin-info-by-id",
         {},
         {
           headers: {
@@ -39,9 +39,9 @@ export default function Navbar() {
           },
         }
         );
-        console.log(data,'dataaaaa')
+        
       console.log(data.data, "get data data");
-      const name = data.data.name;
+      const name = data.name;
       console.log(name, "nnnnnnnnnnnnnaaaaaaaaaam");
       setName(name);
     } catch (error) {
@@ -51,7 +51,7 @@ export default function Navbar() {
   useEffect(() => {
     getData();
 
-  }, []);
+  }, [name]);
 
   return (
 
@@ -103,20 +103,20 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* <button
+                <button
                   type="button"
                   className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button> */}
+                </button>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   
-                        <span className="text-white">{name}</span>
+                        <span className="text-white">{name}ghfdghf</span>
                       
           
             

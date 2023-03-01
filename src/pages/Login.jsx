@@ -15,13 +15,13 @@ function Login() {
 
 
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState(null)
   const [isEmail,setIsEmail] = useState("")
-  const [password,IsPassword] = useState("")
+  // const [password,IsPassword] = useState(null)
   const [isPassword,setIsPassword] = useState("")
   // setIsEmail(validator.isEmail(email))
   
-  const [Password,setPassword] = useState("")
+  const [Password,setPassword] = useState(null)
   console.log(email,Password)
   
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ function Login() {
       dispatch(showLoading());
 
       const response = await userLogin({email,Password})
-      console.log(response,"response,,,,,,,,,,,,,,,,,,")
+     
       
       dispatch(hideLoading());
 
@@ -56,17 +56,17 @@ function Login() {
           toast.error("User Does not exist");
           toast("redirecting to  home page admin");
           console.log("admin")
-          // localStorage.setItem("token", response.data);
+          // localStorage.setItem("userToken", response.data);
           navigate("/login");
         }else{
           console.log(response.user,"user DETAILS")
           toast.success(response.message);
           toast("redirecting to home page");
           console.log(response.user,"user")
-          console.log(response.data,"kasarrrrrrrrrrrrrrrrrrrrrrr")
+         
           dispatch(setUser(response?.user))
           console.log("insided Dispatch")
-          localStorage.setItem("token", response.data);
+          localStorage.setItem("userToken", response.data);
           navigate("/");
         }
         
@@ -97,13 +97,13 @@ function Login() {
         <input type="email" name="email" id="email"  onChange={handleEmail} value={email}class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Plese Enter Your Email" required />
     </div>
     
-       {!isEmail &&<small className='text-red-500' >Please enter a valid Email </small>}
+       {!isEmail &&email != null && <small className='text-red-500' >Please enter a valid Email </small>}
     
     <div>
         <label for="Password"  class="block  mb-6 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-        <input type="Password" name="Password" id="Password"  onChange={handlePassword}  value={Password}class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Plese Enter Your Password" required />
+        <input type="Password" name="Password" id="Password"  onChange={handlePassword}  value={Password}class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Plese Enter 6 Digit Password" required />
     </div>
-{!isPassword && <small className='text-red-500'>Please Enter a 6 digit Password</small>}
+{!isPassword && Password !=null && <small className='text-red-500'>Please Enter a 6 digit Password</small>}
    {isEmail & isPassword &&
     <button type="submit" onClick={sendEmail}
      class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>

@@ -35,7 +35,8 @@ export default function Otp() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
+    if(otp === Otp){
+try {
    
     dispatch(showLoading());
     const response = await userRegister({ name, email, password });
@@ -53,15 +54,19 @@ export default function Otp() {
 } catch (error) {
   console.log(error)
 }
+    }else{
+      toast.error('invalid Otp')
+    }
+    
   }
 
-  useEffect(() => {
-    if (otp === Otp) {
-      setValid(true);
-    } else {
-      setValid(false);
-    }
-  }, [otp, Otp]);
+  // useEffect(() => {
+  //   if (otp === Otp) {
+  //     setValid(true);
+  //   } else {
+  //     setValid(false);
+  //   }
+  // }, [otp, Otp]);
 
   return (
     <div>
@@ -85,7 +90,7 @@ export default function Otp() {
               </div>
               <div></div>
             </form>
-            {valid && (
+            {otp && (
               <button
                 type="button"
                 onClick={handleSubmit}

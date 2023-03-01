@@ -17,11 +17,13 @@ import validator from "validator";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(null);
+  const [email, setEmail] = useState(null);
   const [isEmail, setIsEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(null);
+  const [Cpassword, setCPassword] = useState(null);
   const [isPassword, setIsPassword] = useState("");
+  const [confirm,setConfirm]=useState(false)
   const [submit,setSubmit]=useState(false)
   // const [otp,setOtp]=useState('')
   // console.log(otp)
@@ -44,6 +46,19 @@ function Register() {
     const password=e.target.value
     setPassword(password)
     setIsPassword(password.length==6)
+   
+  }
+  const handelCPassword =(e)=>{
+    const Cpassword=e.target.value
+    setCPassword(Cpassword)
+    if(password===Cpassword){
+      setConfirm(true)
+    }else{
+      setConfirm(false)
+     
+    }
+    
+    // setIsPassword(password.length==6)
    
   }
   // if(!name && !isEmail & isPassword){
@@ -79,51 +94,10 @@ toast.success("Check Your Email")
 
 
 
-  // const Register = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     dispatch(showLoading());
-  //     const response = await userRegister({ name, email, password });
-  //     dispatch(hideLoading());
-  //     if (response.success) {
-  //       toast("redirecting to login page");
-  //       toast.success(response.message);
-  //       navigate("/login");
-  //     } else {
-  //       console.log("masoooo");
-  //       toast.error(response.message);
-  //     }
-  //   } catch (error) {
-  //     dispatch(hideLoading());
-
-  //     toast.error("something went wrong");
-  //   }
-  // };
+ 
 
   return (
-    // <div className="authentication">
-    //   <div className="authentication-form card p-3">
-    //     <h1 className="card-title">Register Here</h1>
-    //       <Form layout='vertical' onFinish={onFinish}>
-    //         <Form.Item label='Name' name='name'>
-    //           <Input placeholder= 'Name' />
-    //         </Form.Item>
-    //         <Form.Item label='Email' name='email'>
-    //           <Input type='email' placeholder= 'Email' />
-    //         </Form.Item>
-    //         <Form.Item label='Password' name='password'>
-    //           <Input type='password' placeholder= 'Password' />
-    //         </Form.Item>
-
-    //         <Button className= 'primary-button my-2' htmlType='submit'> Register</Button>
-
-    //         <Link to='/login' className='anchor mt-2'>CLICK HERE TO LOGIN</Link>
-
-    //       </Form>
-
-    //   </div>
-    // </div>
+    
 
     <div>
       <div className="flex justify-center items-center h-screen  ">
@@ -148,10 +122,11 @@ toast.success("Check Your Email")
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Plese Enter Your Name"
                 required
-              />
-              {!name &&
-            <small className="text-red-500"> Please Enter Your Name</small>
-              }
+                />
+                  {/* {name!= null && !name.length && */}
+                {!name && name!=null &&
+              < small className= " text-red-500 "> Please Enter Your Name</small>
+                }
             </div>
             <div>
               <label
@@ -171,7 +146,7 @@ toast.success("Check Your Email")
                 required
               />
             </div>
-            {!isEmail &&
+            {!isEmail && email !=null &&
             <small className="text-red-500">Please Enter a Valid Email</small>
             }
             <div>
@@ -192,10 +167,34 @@ toast.success("Check Your Email")
                 required
               />
             </div>
-            {!isPassword &&
+            {!isPassword && password !=null &&
             <small className="text-red-500">Please Enter 6 digit Password</small>
             }
-{name && isEmail && isPassword &&
+            {isPassword &&
+            <div>
+              <label
+                for="Password"
+                className="block  mb-6 text-sm font-medium text-gray-900 dark:text-white"
+              >
+               Confirm Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="Password"
+                onChange={handelCPassword}
+                value={Cpassword}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="Plese Enter Your Password"
+                required
+              />
+            {!confirm && Cpassword != null &&
+              <small className="text-red-500">Please Confirm Your Password</small>
+            }
+            </div>
+            
+}
+{name && isEmail && isPassword && confirm &&
             <button
             type="button"
             // onClick={Register}

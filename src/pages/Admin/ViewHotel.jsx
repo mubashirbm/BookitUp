@@ -30,7 +30,7 @@ function ViewHotel() {
   return (
     <div className="">
       {/* <!-- component --> */}
-      <div className="container mx-auto bg-[#FFFFFF] max-md:pl-16 ">
+      <div className="container mx-auto  bg-[#FFFFFF] max-md:pl-16 ">
         <div className="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
           {/* <div class="w-full overflow-x-auto"> */}
         <h1 className=" text-white text-center text-lg font-semibold ">View Hotels</h1>

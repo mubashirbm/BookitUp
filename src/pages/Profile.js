@@ -12,27 +12,27 @@ const Profile = () => {
     const navigate = useNavigate()
     const { user } = useSelector((state) => state.user);
     const cloudAPI = 'dxrzjyxr8'
-    const uploadProfile =async () => {
-        const formData = new FormData();
-        formData.append('file', image);
-        formData.append('upload_preset', 'ffjjjzuf');
-        console.log(formData);
-        let imageUrl = null
-       await axios.post(`https://api.cloudinary.com/v1_1/${cloudAPI}/image/upload`, formData).then(async(response) => {
-            console.log(response.data.secure_url);
-            const imageUrl=response.data.secure_url
-            const response1 = await axios.post("/api/user/update-profile", {imageUpdate:imageUrl},
-                {
-                    headers: {
+    // const uploadProfile =async () => {
+    //     const formData = new FormData();
+    //     formData.append('file', image);
+    //     formData.append('upload_preset', 'ffjjjzuf');
+    //     console.log(formData);
+    //     let imageUrl = null
+    //    await axios.post(`https://api.cloudinary.com/v1_1/${cloudAPI}/image/upload`, formData).then(async(response) => {
+    //         console.log(response.data.secure_url);
+    //         const imageUrl=response.data.secure_url
+    //         const response1 = await axios.post("/api/user/update-profile", {imageUpdate:imageUrl},
+    //             {
+    //                 headers: {
                       
-                       Authorization: "Bearer " + localStorage.getItem("token"),
-                    },
-                })
-                if(response1.data.success){
-                    toast.success(response1.data.message);
-                }
-        })
-    }
+    //                    Authorization: "Bearer " + localStorage.getItem("token"),
+    //                 },
+    //             })
+    //             if(response1.data.success){
+    //                 toast.success(response1.data.message);
+    //             }
+    //     })
+    // }
     return (
         <Layout>
             <>

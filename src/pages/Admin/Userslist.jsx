@@ -16,7 +16,7 @@ function Userslist() {
             dispatch(showLoading())
             const response = await axios.get('/api/admin/get-all-users',{
                 headers:{
-                    Authorization:`Bearer ${localStorage.getItem('token')}`
+                    Authorization:`Bearer ${localStorage.getItem('adminToken')}`
                 }
             })
             dispatch(hideLoading())
@@ -38,7 +38,7 @@ function Userslist() {
                 {
                     headers: {
                         // Authorization: `Bearer ${localStorage.getItem("token")}`,
-                        Authorization: "Bearer " + localStorage.getItem("token"),
+                        Authorization: "Bearer " + localStorage.getItem("adminToken"),
                     },
                 })
             dispatch(hideLoading())

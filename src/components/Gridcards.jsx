@@ -42,7 +42,7 @@ export default function Gridcards({ hotel }) {
 
 
 
-      <section className="container mx-auto  flex items-start justify-center py-10 ">
+      <section className="container overflow-x-hidden  mx-auto  flex items-start justify-center py-10 ">
           <div className=" text-xl w-full lg:text-2xl text-gray-800 bg-gray-300 dark:text-gray-900 font-bold ">
             {/* {!hotel ? ( */}
             <br/>

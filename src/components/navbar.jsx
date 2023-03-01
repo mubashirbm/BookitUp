@@ -17,7 +17,7 @@ const Navbar = () => {
         {},
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
           },
         }
         );
@@ -31,6 +31,7 @@ const Navbar = () => {
     }
   };
   useEffect(() => {
+    
     getData();
 
   }, []);
@@ -72,7 +73,7 @@ const Navbar = () => {
                         <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" >Previous Booking</a>
                       </li>
                       <li
-                      onClick={()=>{localStorage.clear("token") 
+                      onClick={()=>{localStorage.clear("userToken") 
                         
                       navigate('/Login')}}>
                       <a  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"  >Logout</a>
