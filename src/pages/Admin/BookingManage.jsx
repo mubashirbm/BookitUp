@@ -36,9 +36,9 @@ allBookings()
             <th className="p-3 text-sm font-semibold tracking-wide text-left">
               RoomId
             </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left">
+            {/* <th className="p-3 text-sm font-semibold tracking-wide text-left">
               
-            </th>
+            </th> */}
             <th className="p-3 text-sm font-semibold tracking-wide text-left">
               Status
             </th>
