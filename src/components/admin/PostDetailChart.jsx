@@ -13,7 +13,7 @@ const PostDetailChart = ({month,booking}) => {
             id: "basic-bar",
           },
           xaxis: {
-            categories:month,
+            categories:[month],
           },
         },
         series: [
