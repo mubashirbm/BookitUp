@@ -2,76 +2,61 @@ import React, { useEffect, useState } from "react";
 import { Await, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "flowbite-datepicker";
-import { check } from "../Api/userApi/UserRequest";
+import { check, getUser } from "../Api/userApi/UserRequest";
 import axios from "axios";
 import { checkDate } from "../Api/userApi/UserRequest";
 import { toast } from "react-hot-toast";
 import Paypal from "./Paypal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Booking() {
   const navigate = useNavigate();
-  const [room, setRoom] = useState("");
-  const location = useLocation();
-  const Room = location.state.roomDetails;
-  // const userId =useSelector((state)=>state)
+//   // const dispatch = useDispatch();
+// import { useDispatch, useSelector } from "react-redux";
+const [room, setRoom] = useState("");
+const location = useLocation();
+const Room = location.state.roomDetails;
 
-  // console.log(userId,"user details from Ridux")
+const data = useSelector((state)=>state.user.user)
 
-const [userId,setId]=useState("")
+
+const userId=data?._id
+console.log(userId,"userId from reduxs")
   const [checkin, setCheckin] = useState("");
+  const [CheckinDate, setCheckinDate] = useState("");
   const [available, setAvalable] = useState(false);
-  console.log(checkin, "checkin");
+ 
   const [checkout, setCheckout] = useState("");
-  console.log(checkout, "checkout");
+ 
   const [adults, setAdult] = useState("");
   const [name, setName] = useState("");
-  console.log(name, "name");
+
   const [roomDetails, setRoomDetails] = useState([]);
-  // console.log(roomDetails,"roomDetails")
+
   const [email, setEmail] = useState("");
-  console.log(email, "email");
+ 
   const [phone, setPhone] = useState("");
-  console.log(phone, "phone");
+
   const roomId = room._id;
   const [unavailable, setUnavailable] = useState([]);
-  console.log(unavailable, "unavailable");
+
   const [pay, setPay] = useState(false);
 
   let days = checkout - checkin;
 
 
-
-
-  const getId = async () => {
-    try {
-      const { data } = await axios.post(
-        "/api/get-user-info-by-id",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("userToken"),
-          },
-        }
-        );
-        console.log(data,'dataaaaa')
-      console.log(data.data, "get data data");
-      const userId = data.data._id;
-      console.log(userId, "nnnnnnnnnnnnnaaaaaaaaaam");
-      setId(userId);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleCheckin = (e) => {
     let Checkin = e.target.value;
+    console.log(Checkin,"Checkin Date")
+   
     let string = Checkin.split("-");
     let Year = string[0];
     let month = string[1];
     let day = string[2];
     let checkinFormat =parseInt( Year + month + day)
     setCheckin(checkinFormat);
+    setCheckinDate(Checkin)
+    
   };
 
   const handleCheckout = async (e) => {
@@ -98,7 +83,7 @@ const [userId,setId]=useState("")
       UA.push(start);
       start++;
     }
-    let total = days *adults * room.price;
+    let total = days * room.price;
     console.log(unavailable, "deeeeeeeee");
 
     let D = {
@@ -112,6 +97,7 @@ const [userId,setId]=useState("")
       total,
       checkin,
       checkout,
+      CheckinDate
       
       
 
@@ -156,7 +142,7 @@ const [userId,setId]=useState("")
   useEffect(() => {
     if (Room) {
       setRoom(Room);
-      getId()
+      // getId()
     }
   }, []);
   return (
@@ -340,7 +326,7 @@ const [userId,setId]=useState("")
                       type="submit"
                       className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                      Total{days * adults * room.price}
+                      Total{days * room.price}
                     </button>
                   </form>
                 </div>

@@ -8,6 +8,15 @@ export default function ListBooking({Item,index}) {
         <td className="p-3 pt-7  text-md text-white">{index + 1}</td>
         <td className="p-3 pt-7 text-md text-white">{Item.name}</td>
         <td className="p-3 pt-7 text-md text-white">{Item.roomId}</td>
+        <td className="p-3 pt-7 text-md text-white">Change Status</td>
+        {Item.status ?
+<td className="p-3 pt-7 text-md text-green-600">Exist</td>
+:(
+<td className="p-3 pt-7 text-md text-red-800">Checked Out</td>
+
+)
+        }
+      
 
         {/* {active ? (
           <button

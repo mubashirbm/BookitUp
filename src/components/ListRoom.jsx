@@ -71,7 +71,7 @@ console.log(RoomId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
               </div>
             </div>
           </td>
-          <td className="p-3 pt-7  text-md text-white">{room._id}</td>
+          <td className="p-3 pt-7  text-md text-white">{room.hotelName}</td>
           {/* <td class="px-4 py-3 text-xs border">
                       <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">
                       {" "}
@@ -88,7 +88,7 @@ console.log(RoomId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
               {/* <navigate {"/admin/editHotel",}> */}
                 <button className="mt-4 inline-block px-6 py-2.5 bg-blue-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>{
                   // editHotel(hotel._id)
-                  navigate('/admin/editRoom',{state:{roomId:{room}}})
+                  navigate('/admin/editRoom',{state:{room:{room}}})
                 }}>
                   Edit
                 </button>

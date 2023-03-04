@@ -1,25 +1,23 @@
 import React from "react";
 import { useState } from "react";
-import { toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { addingHotel } from "../../Api/adminApi/postRequest";
 import { useNavigate } from "react-router-dom";
+
 export default function AddHotel() {
   const dispatch = useDispatch();
   const [hotel, setHotel] = useState("");
   const navigate = useNavigate();
 
-  console.log(hotel);
   const [location, setLocation] = useState("");
   const [category, setCategory] = useState("");
-  console.log(location);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState([]);
-  // const [images, setImages] = useState([])
-  // const [ImageUrl2, setImageUrl2] = useState("");
-  console.log(description);
+
   const cloudAPI = "dxrzjyxr8";
   const addHotel = async (e) => {
     e.preventDefault();
@@ -28,13 +26,6 @@ export default function AddHotel() {
     const formData = new FormData();
     let images = [];
     for (let i = 0; i < image.length; i++) {
-      const fileType = image[i]["type"];
-      const validate = ["iamge/gif", "image/jpeg", "image/png"];
-      if (validate.includes(fileType)) {
-        setImage([...images, image[i]]);
-      } else {
-        toast.error("this type is not allowed");
-      }
       formData.append("file", image[i]);
       formData.append("upload_preset", "Bookit");
       console.log(formData);
@@ -60,9 +51,7 @@ export default function AddHotel() {
         dispatch(showLoading());
 
         console.log(addHotel, "frond add");
-        const result =
-         
-          (await addingHotel(addHotel)).data;
+        const result = (await addingHotel(addHotel)).data;
         console.log(result);
         toast.success(result.message);
         setHotel("");
@@ -75,12 +64,14 @@ export default function AddHotel() {
         console.log(error);
       }
     }
+    dispatch(hideLoading());
     navigate("/admin/hotels");
-    // console.log(response);
+  
   };
-  // const handleImageChange = (event) => {
-  //   setImages([...images, URL.createObjectURL(event.target.files[0])]);
-  // };
+ 
+  const removeImage = (i) => {
+    setImage(image.filter((x) => x.name !== i));
+  };
 
   return (
     <div>
@@ -122,19 +113,7 @@ export default function AddHotel() {
                 />
               </div>
 
-              {/* <div>
-                <label class="text-white dark:text-gray-200" for="password">Password</label>
-                <input id="password" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
-
-              {/* <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Password Confirmation</label>
-                <input id="passwordConfirmation" type="password" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
-              {/* <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Color</label>
-                <input id="color" type="color" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
+             
               <div>
                 <label class="text-white dark:text-gray-200" for="category">
                   Category
@@ -147,18 +126,10 @@ export default function AddHotel() {
                 >
                   <option>Vlla</option>
                   <option>Resort</option>
-                  {/* <option></option> */}
-                  {/* <option>Bandung</option> */}
+                 
                 </select>
               </div>
-              {/* <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Range</label>
-                <input id="range" type="range" class="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
-              {/* <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Date</label>
-                <input id="date" type="date" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
+              
               <div>
                 <label
                   class="text-white dark:text-gray-200"
@@ -191,9 +162,9 @@ export default function AddHotel() {
                     >
                       <path
                         d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <div class="flex text-sm text-gray-600">
@@ -205,15 +176,21 @@ export default function AddHotel() {
                         <input
                           id="file-upload"
                           name="files[]"
-                          onChange={(e) =>{
-
-                            // const selected=e.target.files[0]
-                            // setImage(URL.createObjectURL,e.target.files)
-                            setImage([...image, e.target.files[0]])
-                          }
-                          }
+                          onChange={(e) => {
+                            const fileType = e.target.files[0]["type"];
+                            const validate = [
+                              "iamge/gif",
+                              "image/jpeg",
+                              "image/png",
+                            ];
+                            if (validate.includes(fileType)) {
+                              setImage([...image, e.target.files[0]]);
+                            } else {
+                              toast.error("this type is not allowed");
+                            }
+                          }}
                           type="file"
-                          multiple  
+                          multiple
                           class="sr-only"
                         />
                       </label>
@@ -223,16 +200,35 @@ export default function AddHotel() {
                   </div>
                 </div>
                 <div className="flex">
-                  {image.map((image) => (
-                  
-                    <reactImagepreview
-                      className="block "
-                      // key={index}
-                                          >src={image[0]}
-                      alt="Preview"
-</reactImagepreview>
-                    
-                  ))}
+                  <div className=" flex">
+                    {image.length > 0 &&
+                      image.map((file, key) => {
+                        console.log(file, "filesssss");
+                        if (file) {
+                          console.log("yes");
+                        } else {
+                          console.log("yes");
+                        }
+                        return (
+                          <div className="left flex justify-end ">
+                            <i
+                              onClick={() => {
+                                removeImage(file.name);
+                              }}
+                              className="mdi mdi-close absolute  hover:text-white cursor-pointer"
+                            >
+                              <div className="flex">
+                                {React.createElement(AiOutlineCloseCircle, {
+                                  size: "20",
+                                })}
+                              </div>
+                            </i>
+                            l
+                            <img src={URL.createObjectURL(file)} alt="" />
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
             </div>

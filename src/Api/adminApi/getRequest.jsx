@@ -5,13 +5,13 @@ import { adminAPI } from "../../Utils/Api"
 export const hotels= async ()=>{
     console.log("object")
     const  {data} =await adminAPI.get("/getAllHotel")
-    console.log(data,"000000000000000000000000000000");
+   
     return data
 }
 export const rooms= async ()=>{
     console.log("room object")
     const  {data} =await adminAPI.get("/getAllRoom")
-    console.log(data,"000000000000000000000000000000");
+   
     return data
 }
 
@@ -24,15 +24,15 @@ export const getUser=async ()=>{
     return data
 }
 export const hotelById=async(hotelId)=>{
-    console.log(hotelId,"dddddddddddddddddddd")
-    console.log("dddddddddddddddddddd")
+   
+  
     const {data}=await adminAPI.get(`/getHotelById/${hotelId}`)
     console.log(data)
     return data
 }
 export const roomById=async(roomId)=>{
-    console.log(roomId,"dddddddddddddddddddd")
-    console.log("dddddddddddddddddddd")
+   
+   
     const {data}=await adminAPI.get(`/getRoomById/${roomId}`)
     console.log(data)
     return data
@@ -42,3 +42,23 @@ export const getAllBookings=async ()=>{
     console.log(data,'Booking Details')
     return data
 }
+
+
+export const getChartData =async () =>{
+    try {
+      const { data } = await adminAPI.get("/getChart");
+      return data
+    } catch (error) {
+      
+    }
+  }
+  export const monthgraph=async ()=>{
+    try {
+        
+        const data=await adminAPI.get('/getrevenue')
+        console.log(data,"daaattaaa")
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+  }

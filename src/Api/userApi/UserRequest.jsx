@@ -91,10 +91,29 @@ export const sendingEmail =async(mail)=>{
   console.log(mail,"email")
 try {
   const data=await userApi.post('/sendEmail',mail)
-  console.log(data,'Otp')
   return data
 } catch (error) {
   console.log(error)
 }
 }
 
+
+export const getUser = async () => {
+  try {
+    const {data} = await userApi.post("/get-user-info-by-id");
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const bookings =async (Id)=>{
+  try {
+    console.log("1111111111111111111111")
+    const {data}=await userApi.get(`/getMyBookings/${Id}`)
+    return data
+    console.log(data)
+  } catch (error) {
+    
+  }
+}

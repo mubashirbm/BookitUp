@@ -9,6 +9,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import log from '../../images/log.png'
 import { Link } from 'react-router-dom'
 import { useState,useEffect } from 'react'
+import { getAdmin } from '../../Api/adminApi/postRequest'
 import axios from 'axios'
 
 const navigation = [
@@ -30,15 +31,7 @@ export default function Navbar() {
 
   const getData = async () => {
     try {
-      const { data } = await axios.post(
-        "/api/get-admin-info-by-id",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("adminToken"),
-          },
-        }
-        );
+      const { data } = await getAdmin()
         
       console.log(data.data, "get data data");
       const name = data.name;
@@ -116,7 +109,7 @@ export default function Navbar() {
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   
-                        <span className="text-white">{name}ghfdghf</span>
+                        <span className="text-white">{name}</span>
                       
           
             

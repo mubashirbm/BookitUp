@@ -6,106 +6,86 @@ import { BlockUser,getUser } from "../../Api/adminApi/getRequest";
 import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import ListUsers from "../../components/admin/ListUsers";
 import $ from "jquery";
-// import "datatables.net";
-// import "datatables.net-dt/css/jquery.dataTables.css";
-// import Helmet from "helmet";
-// import $ from 'jquery';
-
-// import {getUser} from '../../Api/adminApi/getRequest'
-
-
-
-
-
+import ReactPaginate from 'react-paginate';
 
 export default function UserManage() {
+  const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const dispatch = useDispatch();
 
-
-  const [users,setUsers]=useState([])
-  const dispatch = useDispatch
-
-
-  const getUsers=async()=>{
+  const getUsers = async () => {
     try {
-
-      //  dispatch(showLoading())
-        
-      const {data}=await getUser()
-      setUsers(data)
-      console.log(data,"jjjjjjjjjjjjjjjjj")
+      const { data } = await getUser();
+      setUsers(data);
+      setTotalPages(Math.ceil(data.length / 10));
     } catch (error) {
-      
+      console.log(error);
     }
-  }
-  // const blockAction=async(userId)=>{
-  //  await BlockUser(false,userId)
-  // //  dispatch(hideLoading())
-  // }
-  // const unblockAction=async(userId)=>{
-    
-  //   await BlockUser(true,userId)
-    
-  // }
+  };
 
+  useEffect(() => {
+    getUsers();
+  }, []);
 
-// useEffect(()=>{
-// getUsers()
-// },[])
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
+  };
 
-useEffect(() => {
-  getUsers()
-  $(document).ready(function () {
-    $("#dataTable").DataTable();
-  });
-}, []);
+  const usersPerPage = 10;
+  const offset = currentPage * usersPerPage;
 
   return (
-   
-
-
-<>
-<div className="">
-      <div className="container mx-auto bg-[#FFFFFF] max-md:pl-16 ">
-    <div className="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
-  <h1 className="text-white text-center font-semibold text-xl">User Management</h1>
-      <table className="w-full mt-5">
-        <thead className="bg-gray-50 border-b-2 border-stone-700 ">
-          <tr>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left">
-              {" "}
-              No
-            </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left">
-              Name
-            </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left">
-              Email
-            </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left">
-              Status
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-         {users?.map((Item,index)=>{
-          return(
-            <ListUsers Item={Item} index={index}/>
-            )
-         })}
-          
-        </tbody>
-      </table>
-    </div>
-  </div>
-  </div>
-
-
-
-<div class="container mx-auto">
-          
+    <>
+      <div className="">
+        <div className="container mx-auto bg-[#FFFFFF] max-md:pl-16 ">
+          <div className="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+            <h1 className="text-white text-center font-semibold text-xl">
+              User Management
+            </h1>
+            <table className="w-full mt-5">
+              <thead className="bg-gray-50 border-b-2 border-stone-700 ">
+                <tr>
+                  <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                    {" "}
+                    No
+                  </th>
+                  <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                    Name
+                  </th>
+                  <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                    Email
+                  </th>
+                  <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {users
+                  .slice(offset, offset + usersPerPage)
+                  .map((item, index) => {
+                    return <ListUsers Item={item} index={index} />;
+                  })}
+              </tbody>
+            </table>
+            <div className="bg-white flex ">
+            <table className="w-full mt-5">{/* ... */}</table>
+            <ReactPaginate
+              previousLabel={"Prev"}
+              nextLabel={"Next"}
+              pageCount={totalPages}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              previousLinkClassName={"previous-page"}
+              nextLinkClassName={"next-page"}
+              disabledClassName={"pagination-disabled"}
+              activeClassName={"pagination-active"}
+            />
+            </div>
+          </div>
         </div>
-
-       
-            </>
+      </div>
+    </>
   );
 }

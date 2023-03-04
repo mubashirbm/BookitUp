@@ -4,20 +4,22 @@ import React from 'react'
 import  { useState } from "react";
 import Chart from "react-apexcharts";
 
-const PostDetailChart = ({postGraphCategories,postGraphData}) => {
+const PostDetailChart = ({month,booking}) => {
+  console.log(booking,'23')
+  console.log(month,'23')
     const [state, setState] = useState({
         options: {
           chart: {
             id: "basic-bar",
           },
           xaxis: {
-            categories: ["Jan","Feb","Mar","Apr","May","Jun"],
+            // categories:month,
           },
         },
         series: [
           {
             name: "series-1",
-            data: [1991, 1992, 1993, 1994, 1995, 1996],
+            // data:booking,
           },
         ],
       });
