@@ -55,8 +55,8 @@ export default function ListUsers({ Item, index }) {
     <>
       <tr className="b-white border-b-2 ">
         <td className="p-3 pt-7  text-md text-white">{index + 1}</td>
-        <td className="p-3 pt-7 text-md text-white">{Item.name}</td>
-        <td className="p-3 pt-7 text-md text-white">{Item.email}</td>
+        <td className="p-3 pt-4 text-md text-white">{Item.name}</td>
+        <td className="p-3 pt-4 text-md text-white">{Item.email}</td>
 
         {active ? (
           <button
@@ -64,7 +64,7 @@ export default function ListUsers({ Item, index }) {
             onClick={() => {
               block(Item._id);
             }}
-            className="mt-4 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out"
+            className=" mt-4 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out"
           >
             Block
           </button>

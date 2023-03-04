@@ -4,26 +4,45 @@ import image from '../images/one.webp'
 
 export default function Invoice() {
 
-  const location = useLocation()
-  const data = location?.state
-  console.log(data, "data")
-  console.log(data,"hjjjjjjjjjjjjjjjj")
+  const location =useLocation()
+  const bookData=location?.state?.bookDetails
+  const roomData =location?.state?.Room
+  const bookDetails=bookData.bookDetails
+  const Room=roomData.Room
+  // console.log(route,".....................")
+  // const bookDetails = route.params?.state?.bookDetails;
+  // const Room = route.params?.state?.Room;
+  // const { bookDetails, Room } = route.params.state;
+  console.log(bookDetails,"BOOKDETAILS")
+  console.log(Room,"ROOM")
+
+  // const location = useLocation()
+  // const data = location?.state?.roomdetails
+  // // const data = location?.state?.hotelId;
+  // console.log(data, "data")
+  // console.log(data,'Room Details In Invoice')
 
 
   return (
     <>
-              <div className="mt-10 flex justify-center">
-                <img class="object-cover ml-5 rounded-md" src={image} style={{width:"400px", height:"400px"}} />
+              <div className="mt-10 flex justify-center ">
+                <img class="object-cover ml-5 rounded-md" src={Room.images[0]} style={{width:"200px", height:"200px"}} />
               </div>
 
-              {/* <div class="flex justify-center p-4 leading-normal">
+              <div class="flex justify-center p-4 leading-normal">
                 <h5 class="mb-2 text-2xl font-normal tracking-tight mr-2">
-                  {data}
+                  
                 </h5>
-                <p class="mb-2 text-2xl font-normal tracking-tight ml-2">
-                  Mubashir
+                <p class="mb-2 text-2xl text-center font-normal tracking-tight ml-2">
+                  Room ID:{bookDetails?.roomId}<br/>
+                  Hotel:{bookDetails?.hotelName}<br/>
+                  Booked Person:{bookDetails.name},<br />
+                  Number Of Guests:{bookDetails.adults}<br/>
+                  Checkin Date:{bookDetails.CheckInDate}<br/>
+                  CheckOut Date:{bookDetails.CheckOutDate}<br/>
+                  Booked Price:{bookDetails.total}
                 </p>
-              </div> */}
+              </div>
               {/* <div class="flex justify-center leading-normal">
                 <h5 class="mb-2 text-2xl font-normal tracking-tight mr-2">
                   Description:
@@ -32,8 +51,8 @@ export default function Invoice() {
                   Mandan maramandan
                 </p>
               </div> */}
-      <div class="bg-gray-100">
-        <div class="bg-white p-6  md:mx-auto">
+      {/* <div class="bg-gray-100"> */}
+        {/* <div class="bg-white p-6  md:mx-auto"> */}
           <svg viewBox="0 0 24 24" class="text-green-600 w-16 h-16 mx-auto my-6">
             <path fill="currentColor"
               d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
@@ -49,8 +68,8 @@ export default function Invoice() {
               </a>
             </div>
           </div>
-        </div>
-      </div>
+        {/* </div> */}
+      {/* </div> */}
     </>
   )
 }

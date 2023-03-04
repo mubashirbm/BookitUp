@@ -16,65 +16,60 @@ export default function Booking() {
 const [room, setRoom] = useState("");
 const location = useLocation();
 const Room = location.state.roomDetails;
-
+console.log(Room,'Room')
 const data = useSelector((state)=>state.user.user)
 
 
 const userId=data?._id
-console.log(userId,"userId from reduxs")
-  const [checkin, setCheckin] = useState("");
-  const [CheckinDate, setCheckinDate] = useState("");
-  const [available, setAvalable] = useState(false);
- 
-  const [checkout, setCheckout] = useState("");
- 
-  const [adults, setAdult] = useState("");
-  const [name, setName] = useState("");
 
-  const [roomDetails, setRoomDetails] = useState([]);
-
-  const [email, setEmail] = useState("");
- 
-  const [phone, setPhone] = useState("");
-
-  const roomId = room._id;
-  const [unavailable, setUnavailable] = useState([]);
-
-  const [pay, setPay] = useState(false);
-
-  let days = checkout - checkin;
+const [checkin, setCheckin] = useState("");
+const [CheckInDate, setCheckInDate] = useState("");
+const [CheckOutDate, setCheckOutDate] = useState("");
+const [available, setAvalable] = useState(false);
+const [checkout, setCheckout] = useState("");
+const [adults, setAdult] = useState("");
+const [name, setName] = useState("");
+const [bookDetails, setBookDetails] = useState([]);
+const [email, setEmail] = useState("");
+const [phone, setPhone] = useState("");
+const roomId = room._id;
+const [unavailable, setUnavailable] = useState([]);
+const [pay, setPay] = useState(false);
+let days = checkout - checkin;
 
 
-  const handleCheckin = (e) => {
-    let Checkin = e.target.value;
-    console.log(Checkin,"Checkin Date")
-   
-    let string = Checkin.split("-");
-    let Year = string[0];
-    let month = string[1];
-    let day = string[2];
-    let checkinFormat =parseInt( Year + month + day)
-    setCheckin(checkinFormat);
-    setCheckinDate(Checkin)
-    
-  };
+const handleCheckin = (e) => {
+  let Checkin = e.target.value;
+  console.log(Checkin,"Checkin Date")
+  
+  let string = Checkin.split("-");
+  let Year = string[0];
+  let month = string[1];
+  let day = string[2];
+  let checkinFormat =parseInt( Year + month + day)
+  setCheckin(checkinFormat);
+  setCheckInDate(Checkin)
+  
+};
 
-  const handleCheckout = async (e) => {
-    let Checkout = e.target.value;
+const handleCheckout = async (e) => {
+  let Checkout = e.target.value;
+  
+  let string = Checkout.split("-");
+  let Year = string[0];
+  let month = string[1];
+  let day = string[2];
+  
+  let checkoutFormat =parseInt( Year + month + day)
+  
+  if (checkoutFormat > checkin) {
+    setCheckout(checkoutFormat);
+    setCheckOutDate(Checkout)
+  }
+};
 
-    let string = Checkout.split("-");
-    let Year = string[0];
-    let month = string[1];
-    let day = string[2];
-
-    let checkoutFormat =parseInt( Year + month + day)
-
-    if (checkoutFormat > checkin) {
-      setCheckout(checkoutFormat);
-    }
-  };
-
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
+    console.log(bookDetails,"roomDetails")
     e.preventDefault();
     let UA = [];
     let start = checkin;
@@ -84,10 +79,11 @@ console.log(userId,"userId from reduxs")
       start++;
     }
     let total = days * room.price;
-    console.log(unavailable, "deeeeeeeee");
+  
 
     let D = {
       userId,
+      hotelName :Room.hotelName,
       UA,
       name,
       adults,
@@ -97,18 +93,19 @@ console.log(userId,"userId from reduxs")
       total,
       checkin,
       checkout,
-      CheckinDate
+      CheckInDate,
+      CheckOutDate
       
       
 
     };
-    console.log(D,"/??????????????????????????????");
-    setRoomDetails(D,"1111111111111111111111111111111111111111111");
+
+setBookDetails(D)
     // console.log(details,'deeeeeeeee')
     // navigate('/payment',{state:{roomDet:{D}}})
     setPay(true);
   };
-  console.log(roomDetails, "deeeeeeeee");
+
 
   // setRoomDetails(details)
   // console.log(roomDetails,"roomDetails.UA,UAROOMDETAILS")
@@ -297,7 +294,7 @@ console.log(userId,"userId from reduxs")
                         I agree For payment
                       </label>
                     </div>
-                    {pay && <Paypal roomDetails={roomDetails} />}
+                    {pay && <Paypal bookDetails={bookDetails} Room={Room} />}
                   </form>
                 </span>
                 {/* <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">

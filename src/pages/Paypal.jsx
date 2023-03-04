@@ -12,24 +12,25 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React,ReactDOM });
 
 
 
-export default function Paypal({roomDetails}) {
+export default function Paypal({bookDetails,Room}) {
 const navigate=useNavigate()
 const [invoice,setInvoice]=useState("")
 console.log(invoice)
 
 
-       console.log(roomDetails,"Rooooooooooooooooooooooooooooooooo")
-       const Id=roomDetails.roomId
-       console.log( roomDetails.roomId)
+       console.log(bookDetails,"Rooooooooooooooooooooooooooooooooo")
+       const Id=bookDetails.roomId
+       console.log(Id,"xxxxxxxxxxxxxxxxxxxxx")
+       console.log( bookDetails.roomId)
        const onBooking = async()=>{
         try {
-          const data= await bookRoom(Id,roomDetails)
+          const data= await bookRoom(Id,bookDetails)
           console.log(data,"for booking data")
           setInvoice(data)
           toast.success("Booked Successfully")
           console.log("booking success");
-          // navigate("/booking", { state: { roomDetails: room } });
-          navigate("/invoice")
+          // navigate("/booking", { state: { bookDetails: room } });
+          navigate("/invoice" ,{state:{bookDetails:{bookDetails},Room:{Room}}})
           console.log(data,"for booking data")
         } catch (error) {
        console.log(error)
@@ -42,7 +43,7 @@ console.log(invoice)
       purchase_units: [
         {
           amount: {
-            value:roomDetails.total,
+            value:bookDetails.total,
           },
         },
       ],

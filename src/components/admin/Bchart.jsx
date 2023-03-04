@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts';
 import {monthgraph} from '../../Api/adminApi/getRequest'
 
 
-const Bchart = () => {
+const  Bchart = () => {
   const [state, setState] = useState({
     options: {
       chart: {
@@ -26,15 +26,12 @@ const Bchart = () => {
       try {
         const res = await monthgraph()
         const data = res.data;
+        console.log(data,"'monthly revenue")
 
-        setState(prevState => ({
-          ...prevState,
-          options: {
+        setState(prevState => (
+          {...prevState,options: {
             ...prevState.options,
-            xaxis: {
-              categories: data.months,
-            },
-          },
+            xaxis: {categories: data.months,},},
           series: [
             {
               name: 'Monthly Revenue',

@@ -79,7 +79,7 @@ console.log(HotelId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
           <ul className="flex justify-center">
             <li>
               {/* <navigate {"/admin/editHotel",}> */}
-                <button className="mt-4 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-600 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>{
+                <button className="mt-7 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-600 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>{
                   // editHotel(hotel._id)
                   navigate('/admin/addRoom',{state:{hotelId:{hotel}}})
                 }}>
@@ -89,7 +89,7 @@ console.log(HotelId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
             </li>
             <li>
               {/* <navigate {"/admin/editHotel",}> */}
-                <button className="mt-4 inline-block px-6 py-2.5 bg-blue-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>{
+                <button className="mt-7 inline-block px-6 py-2.5 bg-blue-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg focus:bg-blue-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out" onClick={()=>{
                   // editHotel(hotel._id)
                   navigate('/admin/editHotel',{state:{hotelId:{hotel}}})
                 }}>
@@ -99,7 +99,7 @@ console.log(HotelId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
             </li>
             <li>
               <button
-                className=" mt-4 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out" 
+                className=" mt-7 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out" 
                 //  data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
                 onClick={() => { 
                   confirm(hotel._id);
