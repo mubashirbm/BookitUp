@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { BlockUser,getUser } from "../../Api/adminApi/getRequest";
 import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import ListUsers from "../../components/admin/ListUsers";
-import $ from "jquery";
+
 import ReactPaginate from 'react-paginate';
 
 export default function UserManage() {
@@ -69,18 +69,27 @@ export default function UserManage() {
                   })}
               </tbody>
             </table>
-            <div className="bg-white flex ">
+            <div className="">
             <table className="w-full mt-5">{/* ... */}</table>
             <ReactPaginate
-              previousLabel={"Prev"}
-              nextLabel={"Next"}
+           
               pageCount={totalPages}
               onPageChange={handlePageClick}
-              containerClassName={"pagination"}
-              previousLinkClassName={"previous-page"}
-              nextLinkClassName={"next-page"}
-              disabledClassName={"pagination-disabled"}
-              activeClassName={"pagination-active"}
+              containerClassName={"flex text-white justify-center"}
+              activeClassName={"active"}
+              pageClassName={"page-item"}
+              previousClassName={"page-item"}
+              nextClassName={"page-item"}
+              breakClassName={"page-item"}
+              pageLinkClassName={"page-link"}
+              previousLinkClassName={"page-link"}
+              nextLinkClassName={"page-link"}
+              breakLinkClassName={"page-link"}
+              disabledClassName={"disabled"}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={3}
+              previousLabel={"«"}
+              nextLabel={"»"}
             />
             </div>
           </div>

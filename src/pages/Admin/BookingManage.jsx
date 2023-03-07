@@ -3,9 +3,12 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { getAllBookings } from '../../Api/adminApi/getRequest'
 import ListBooking from '../../components/admin/ListBooking'
+import ReactPaginate from 'react-paginate';
 
 export default function BookingManage() {
     const [booking,setBooking]=useState([])
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
     console.log(booking,"booking")
 
 const allBookings= async()=>{
@@ -17,6 +20,10 @@ setBooking(data)
     useEffect(()=>{
 allBookings()
     },[])
+    const handlePageClick = (data) => {
+      setCurrentPage(data.selected);
+      setTotalPages(Math.ceil(data.length / 10));
+    };
   return (
     <>
 <div className="">
@@ -39,9 +46,9 @@ allBookings()
             <th className="p-3 text-sm font-semibold tracking-wide text-left">
               
             </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left">
+            {/* <th className="p-3 text-sm font-semibold tracking-wide text-left">
               
-            </th>
+            </th> */}
             <th className="p-3 text-sm font-semibold tracking-wide text-left">
               Status
             </th>
@@ -56,6 +63,26 @@ allBookings()
           
         </tbody>
       </table>
+      <ReactPaginate
+           
+              pageCount={totalPages}
+              onPageChange={handlePageClick}
+              containerClassName={"flex text-white justify-center"}
+              activeClassName={"active"}
+              pageClassName={"page-item"}
+              previousClassName={"page-item"}
+              nextClassName={"page-item"}
+              breakClassName={"page-item"}
+              pageLinkClassName={"page-link"}
+              previousLinkClassName={"page-link"}
+              nextLinkClassName={"page-link"}
+              breakLinkClassName={"page-link"}
+              disabledClassName={"disabled"}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={3}
+              previousLabel={"«"}
+              nextLabel={"»"}
+            />
     </div>
   </div>
   </div>

@@ -1,6 +1,58 @@
 import React from 'react'
+import { useState } from 'react';
+import { ChangeStatus } from "../../Api/adminApi/getRequest";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ListBooking({Item,index}) {
+const navigate =useNavigate()
+
+  const [active, setActive] = useState(Item.status);
+  const blockAction = async (userId) => {
+    await ChangeStatus(false, userId);
+    setActive(false);
+    //  dispatch(hideLoading())
+  };
+  const unblockAction = async (userId) => {
+    await ChangeStatus(true, userId);
+    setActive(true);
+  };
+
+
+
+  const block = (userId) => {
+    confirmAlert({
+      title: 'Confirm to ',
+      message: 'Are you sure ! want to Checkout ?',
+      buttons: [
+        { 
+          label: 'Yes',
+          onClick: () => {blockAction(userId)}
+        },
+        {
+          label: 'No',
+        }
+      ]
+    });
+  };
+
+  const unBlock = (userId) => {
+    confirmAlert({
+      title: 'Confirm to ',
+      message: 'Are you sure ! want to CheckIn ?',
+      buttons: [
+        { 
+          label: 'Yes',
+          onClick: () => {unblockAction(userId)}
+        },
+        {
+          label: 'No',
+        }
+      ]
+    });
+  };
   console.log(Item,'///////////////////////////')
   return (
     <>
@@ -9,9 +61,32 @@ export default function ListBooking({Item,index}) {
         <td className="p-3 pt-7 text-md text-white">{Item.name}</td>
         <td className="p-3 pt-7 text-md text-white">{Item.roomId}</td>
         {/* <td className="p-3 pt-7 text-md text-white">View</td> */}
-        <button className="p-3 pt-7 text-md text-white">View</button>
-        <td className="p-3 pt-7 text-md text-white">Checkout</td>
-        {Item.status ?
+        <button className="p-3 pt-7 text-md text-white" onClick={()=>{
+                  
+                  navigate('/admin/bookedRoom',{state:{roomId:Item.roomId}})
+                }} >View</button>
+        {active ? (
+          <button
+            type="button"
+            onClick={() => {
+              block(Item._id);
+            }}
+            className=" mt-4 inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            Checkout
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              unBlock(Item._id);
+            }}
+            className="mt-4 inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-600 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            CheckIn
+          </button>
+        )}
+        {active ?
 <td className="p-3 pt-7 text-md text-green-600">Exist</td>
 :(
 <td className="p-3 pt-7 text-md text-red-800">Checked Out</td>

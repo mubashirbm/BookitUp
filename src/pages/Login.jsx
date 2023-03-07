@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice"
-import { userLogin } from '../Api/userApi/UserRequest';
+import { check, userLogin } from '../Api/userApi/UserRequest';
 import validator from 'validator';
 import { setUser } from '../redux/userSlice';
+import { useEffect } from 'react';
 
 function Login() {
 
@@ -80,6 +81,16 @@ function Login() {
       toast.error("something went wrong");
     }
   };
+
+const check =()=>{
+  if(localStorage.getItem('userToken')){
+    navigate('/')
+  }
+}
+
+  useEffect(()=>{
+    check()
+  },[])
 
   return (
    

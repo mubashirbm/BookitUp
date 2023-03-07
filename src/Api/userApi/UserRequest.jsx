@@ -12,6 +12,18 @@ export const userRegister = async (fromData) => {
   }
 };
 
+export const otpVerify =async (otp)=>{
+  console.log(otp,"OPY")
+ try {
+  const data =await userApi.post("/verify",otp)
+  console.log(data,"sfdddddddddddddddd")
+  return data
+ } catch (error) {
+  console.log("error")
+  
+ }
+}
+
 export const userLogin = async (formData) => {
   try {
     const { data } = await userApi.post("/login", formData);
@@ -91,6 +103,7 @@ export const sendingEmail =async(mail)=>{
   console.log(mail,"email")
 try {
   const data=await userApi.post('/sendEmail',mail)
+  // console.log(data,"sending email data")
   return data
 } catch (error) {
   console.log(error)
@@ -111,6 +124,7 @@ export const bookings =async (Id)=>{
   try {
     console.log("1111111111111111111111")
     const {data}=await userApi.get(`/getMyBookings/${Id}`)
+    console.log(data,"222222222222222222222222222222222222")
     return data
     console.log(data)
   } catch (error) {

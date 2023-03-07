@@ -59,6 +59,9 @@ function ViewHotel() {
             <thead className="bg-gray-50 border-b-2 border-stone-700 ">
               <tr className="b-white border-b-2 ">
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                  No
+                </th>
+                <th className="p-3 text-sm font-semibold tracking-wide text-left">
                   Name
                 </th>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
@@ -78,22 +81,36 @@ function ViewHotel() {
               {Hotel.slice(
                 currentPage * perPage,
                 (currentPage + 1) * perPage
-              ).map((hotel) => (
-                <ListHotel hotel={hotel} />
+              ).map((hotel,index) => (
+                <ListHotel hotel={hotel} index={index} />
               ))}
             </tbody>
           </table>
 
           {/* </div> */}
-          <div className="bg-white">
+          <div className=" items-center">
             {/* ... */}
             <table className="w-full mt-5">{/* ... */}</table>
             <ReactPaginate
-              pageCount={pageCount}
-              onPageChange={handlePageChange}
-              containerClassName={"pagination"}
-              activeClassName={"active"}
-            />
+  pageCount={pageCount}
+  onPageChange={handlePageChange}
+  
+  containerClassName={"flex text-white justify-center"}
+  activeClassName={"active"}
+  pageClassName={"page-item"}
+  previousClassName={"page-item"}
+  nextClassName={"page-item"}
+  breakClassName={"page-item"}
+  pageLinkClassName={"page-link"}
+  previousLinkClassName={"page-link"}
+  nextLinkClassName={"page-link"}
+  breakLinkClassName={"page-link"}
+  disabledClassName={"disabled"}
+  marginPagesDisplayed={1}
+  pageRangeDisplayed={3}
+  previousLabel={"«"}
+  nextLabel={"»"}
+/>
           </div>
         </div>
       </div>

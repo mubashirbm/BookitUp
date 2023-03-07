@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import { userRegister } from "../Api/userApi/UserRequest";
 import { toast } from "react-hot-toast";
+import {otpVerify} from '../Api/userApi/UserRequest'
 
 export default function Otp() {
   const navigate = useNavigate();
@@ -34,8 +35,12 @@ export default function Otp() {
 
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    if(otp === Otp){
+
+    // e.preventDefault();
+console.log(otp,"ottpp")
+    const data=await otpVerify({otp})
+  
+    if(data.data.success){
 try {
    
     dispatch(showLoading());

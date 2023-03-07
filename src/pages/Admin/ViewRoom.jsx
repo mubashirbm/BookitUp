@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 function ViewRoom() {
   const [room, setRoom] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const roomsPerPage = 5;
+  const roomsPerPage = 10;
   const pagesVisited = pageNumber * roomsPerPage;
 
   const getAllRoom = async () => {
@@ -42,6 +42,9 @@ function ViewRoom() {
             <thead className="bg-gray-50 border-b-2 border-stone-700 ">
               <tr className="b-white border-b-2 ">
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
+                  No
+                </th>
+                <th className="p-3 text-sm font-semibold tracking-wide text-left">
                   Name
                 </th>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
@@ -55,23 +58,33 @@ function ViewRoom() {
             <tbody class="bg-gray-800 ">
               {room
                 .slice(pagesVisited, pagesVisited + roomsPerPage)
-                .map((room) => (
-                  <ListRoom room={room} key={room.id} />
+                .map((room,index) => (
+                  <ListRoom room={room} key={room.id} index={index} />
                 ))}
             </tbody>
           </table>
-          <div className="bg-white flex ">
+          <div className="  ">
             <table className="w-full mt-5">{/* ... */}</table>
           <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
+            // previousLabel={"Previous"}
+            // nextLabel={"Next"}
             pageCount={pageCount}
             onPageChange={changePage}
-            containerClassName={"pagination"}
-            previousLinkClassName={"previous_page"}
-            nextLinkClassName={"next_page"}
-            disabledClassName={"disabled"}
+            containerClassName={"flex text-white justify-center"}
             activeClassName={"active"}
+            pageClassName={"page-item"}
+            previousClassName={"page-item"}
+            nextClassName={"page-item"}
+            breakClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousLinkClassName={"page-link"}
+            nextLinkClassName={"page-link"}
+            breakLinkClassName={"page-link"}
+            disabledClassName={"disabled"}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={3}
+            previousLabel={"«"}
+            nextLabel={"»"}
           />
           </div>
         </div>

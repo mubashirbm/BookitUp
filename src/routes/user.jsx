@@ -48,16 +48,17 @@ export default function User() {
           
         } />
         <Route exact path='/invoice' element= {
-          // <ProtectedRoute>
+          <ProtectedRoute>
             
             <Invoice />
-          // {/* </ProtectedRoute> */}
+          </ProtectedRoute>
           
         } />
         <Route exact path='/mybooking' element= {
-          
+          <ProtectedRoute>
             
             <Mybooking />
+          </ProtectedRoute>
           
           
         } />
@@ -81,20 +82,24 @@ export default function User() {
          
       } />
         <Route exact path='/booking' element= {
-          // <ProtectedRoute>
+          <ProtectedRoute>
 
             <Booking />
-          // </ProtectedRoute>
+          </ProtectedRoute>
          
       } />
         <Route exact path='/payment' element= {
-          // <ProtectedRoute>
+          <ProtectedRoute>
 
             <Payment />
-          // {/* </ProtectedRoute> */}
+          </ProtectedRoute>
          
       } />
+          <Route path="/*" element={<div>
+        <h1>  Page Not Found 404</h1>
+       </div>}/>
     </Routes>
+
     {/* </BrowserRouter> */}
 
     </>

@@ -9,7 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
 
-export default function ListRoom({ room }) {
+export default function ListRoom({ room ,index}) {
   const navigate=useNavigate()
   const [visible, setVisible] = useState(true);
 
@@ -55,6 +55,7 @@ console.log(RoomId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
     <>
       {visible && (
         <tr class="text-gray-700">
+             <td className="p-3 pt-7  text-md text-white">{index + 1}</td>
           <td className="p-3 pt-7  text-md text-white">
             <div class="flex items-center text-sm">
               <div class="relative w-8 h-8 mr-3 rounded-full">

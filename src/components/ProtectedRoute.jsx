@@ -7,7 +7,9 @@ import {showLoading,hideLoading} from "../redux/alertsSlice"
 
 
 function ProtectedRoute(props) {
-const { user } = useSelector((state) => state.user);
+// const { user } = useSelector((state) => state.user);
+// const {user} = useSelector((state) => state.user.user);
+const user=localStorage.getItem('userToken')
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,15 +17,7 @@ const { user } = useSelector((state) => state.user);
   const getUser = async () => {
     try {
       dispatch(showLoading())
-      const response = await axios.post(
-        "/api/user/get-user-info-by-id",
-        { token: localStorage.getItem("userToken") },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-        }
-      );
+      const response = await getUser()
       dispatch(hideLoading())
       if (response.data.success) {
         dispatch(setUser(response.data.data));  
@@ -39,16 +33,16 @@ const { user } = useSelector((state) => state.user);
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      getUser();
-    }
-  }, [user]);
+    useEffect(() => {
+      if (!user) {
+        getUser();
+      }
+    }, [user]);
 
   if (localStorage.getItem("userToken")) {
-    return <Navigate to= '/'/>;
-  } else {
     return props.children;
+  } else {
+    return <Navigate to= '/'/>;
   }
 }
 

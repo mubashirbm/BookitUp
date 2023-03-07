@@ -14,6 +14,8 @@ import AddRoom from "../pages/Admin/AddRoom";
 import ViewRoom from "../pages/Admin/ViewRoom"
 import EditRoom from "../pages/Admin/EditRoom"
 import BookingManage from "../pages/Admin/BookingManage";
+import BookDetails from "../pages/Admin/BookDetails";
+
 
 export default function Admin() {
   return (
@@ -60,6 +62,14 @@ export default function Admin() {
               </ProtectedRoute>
             }
           />
+          <Route
+            exact
+            path="/bookedRoom"element={
+              <ProtectedRoute>
+                <BookDetails />
+              </ProtectedRoute>
+            }
+          />
         <Route
           exact
           path="/hotels"element={
@@ -100,6 +110,10 @@ export default function Admin() {
             </ProtectedRoute>
           }
         />
+        <Route path="/*" element={<div>
+        <h1>Page Not Found 404</h1>
+       </div>}/>
+    
       </Routes>
     </>
   );
