@@ -5,32 +5,37 @@ import {getChartData} from '../../Api/adminApi/getRequest'
 
 import  { useState } from "react";
 import Chart from "react-apexcharts";
+import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../../redux/alertsSlice';
 
 
 
 
 const   PostDetailChart = () => { 
-    const [state, setState] = useState({
-        options: {
+const dispatch=useDispatch()
+const [state, setState] = useState({
+  options: {
           chart: {
             id: "basic-bar",
           },
           xaxis: {
-            categories:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            // categories:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
           },
         },
         series: [
           {
             name: "series-1",
-            data:[10000, 20000, 30000, 40000, 50000, 60000],
+            data:[5,10,15,20,25,30],
           },
         ],
       });
       useEffect(()=>{
         const fetchData =async () => {
+          dispatch(showLoading())
           try {
             
             const res=await getChartData()
+            dispatch(hideLoading())
             console.log(res,"res")
           
             // console.log(data,"getChartData")

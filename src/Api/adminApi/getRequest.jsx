@@ -77,3 +77,21 @@ export const getChartData =async () =>{
         console.log(error)
     }
   }
+  export const getBookingTotal =async ()=>{
+    try {
+        const data=await adminAPI.get('/getBookingTotal')
+        console.log(data,'data')
+        return data
+
+    } catch (error) {
+        console.log(error)
+    }
+  }
+  export const getCanceled=async ()=>{
+    try {
+        const data=await adminAPI.get('/getCanceled')
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+  }

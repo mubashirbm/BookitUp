@@ -37,22 +37,37 @@
 import React, { useEffect, useState } from "react";
 import PostDetailChart from "../../components/admin/PostDetailChart";
 import Bchart from "../../components/admin/Bchart";
-import {getChartData} from "../../Api/adminApi/getRequest"
+import {getBookingTotal,getCanceled} from "../../Api/adminApi/getRequest"
+
 
 export default function AdminHome() {
+  const [totalUsers,setTotalUsers]=useState("")
+  const [totalBookings,setTotalBookings] =useState("")
+  const [totalRevenue,setTotalRevenue]=useState("")
+  const [canceledBookings,setCanceledBookings]=useState("")
 
 
-  // useEffect(()=>{
-  //   const fetchData =async () => {
-  //     const data=await getChartData()
-  //     console.log(data,"getChartData")
-      
-  //     setMonth(data.months)
-  //     setBookings(data.bookings)
-      
-  //   };
-  //   fetchData()
-  // }, []);
+
+const getTotalBookings =async ()=>{
+  const data= await getBookingTotal()
+  console.log(data,"TOTALUSERS")
+  setTotalBookings(data)
+}
+const getTotalCanceled =async ()=>{
+  const data=await getCanceled()
+  setCanceledBookings(data)
+}
+
+
+
+
+  useEffect(()=>{
+  // getTotalUsers()
+  getTotalCanceled()
+  // getTotalRevenue()
+  getTotalBookings()
+
+  }, []);
 
   return (
     <div className="w-full ">

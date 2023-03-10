@@ -1,30 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
+import { useDispatch } from 'react-redux';
 import {monthgraph} from '../../Api/adminApi/getRequest'
+import { hideLoading, showLoading } from '../../redux/alertsSlice';
 
 
 const  Bchart = () => {
+  const dispatch=useDispatch()
   const [state, setState] = useState({
     options: {
       chart: {
         id: 'basic-bar',
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
       },
     },
     series: [
       {
         name: 'series-1',
-        data: [10000, 20000, 30000, 40000, 50000, 60000],
+        // data: [10000, 20000, 30000, 40000, 50000, 60000],
       },
     ],
   });
 
   useEffect(() => {
     const fetchData = async () => {
+      dispatch(showLoading())
       try {
         const res = await monthgraph()
+        dispatch(hideLoading())
         const data = res.data;
         console.log(data,"'monthly revenue")
 
