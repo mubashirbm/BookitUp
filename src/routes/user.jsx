@@ -16,6 +16,7 @@ import Invoice from '../pages/Invoice';
 import Otp from '../pages/Otp';
 import Table from '../pages/Table';
 import Mybooking from '../pages/Mybooking';
+import Error from '../components/Error';
 
 export default function User() {
   // const { loading } = useSelector((state) => state.alerts);
@@ -95,9 +96,9 @@ export default function User() {
           </ProtectedRoute>
          
       } />
-          <Route path="/*" element={<div>
-        <h1>  Page Not Found 404</h1>
-       </div>}/>
+          <Route path="/*" element={
+            <Error/>
+          }/>
     </Routes>
 
     {/* </BrowserRouter> */}
