@@ -15,8 +15,10 @@ export default function UserManage() {
   const dispatch = useDispatch();
 
   const getUsers = async () => {
+    dispatch(showLoading())
     try {
       const { data } = await getUser();
+      dispatch(hideLoading())
       setUsers(data);
       setTotalPages(Math.ceil(data.length / 10));
     } catch (error) {

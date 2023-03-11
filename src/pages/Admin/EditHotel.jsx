@@ -7,15 +7,17 @@ import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { updateHotel } from "../../Api/adminApi/postRequest";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Descriptions } from "antd";
-import { useFetcher, useLocation } from "react-router-dom";
+import { useFetcher, useLocation, useNavigate } from "react-router-dom";
 import { hotelById } from "../../Api/adminApi/getRequest";
 
 export default function EditHotel() {
+  
   const dispatch = useDispatch();
   const locations = useLocation();
   const data = locations?.state?.hotelId;
   let Hotel = data.hotel;
   const Id =Hotel._id
+  const navigate=useNavigate()
 
 
   const [hotel, setHotel] = useState(Hotel.hotel);
@@ -81,6 +83,7 @@ export default function EditHotel() {
         console.log(error);
       }
     }
+    navigate("/admin/hotels");
   };
   const removeImage = (i) => {
     setImage(image.filter((x) => x.name !== i));

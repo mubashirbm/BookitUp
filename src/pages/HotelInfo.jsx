@@ -7,6 +7,8 @@ import "tw-elements";
 
 import Modal from "../components/Modal";
 import Gridcards from "../components/Gridcards";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 export default function HotelInfo() {
   const [hotel, setHotel] = useState("");
@@ -14,12 +16,15 @@ export default function HotelInfo() {
   const location = useLocation();
   const data = location?.state?.hotelId;
   const Id = data.hotel._id;
+  const dispatch=useDispatch()
   // console.log(data.hotel.images[0],"lllllllllllllll")
 
   const getHotel = async (Id) => {
     try {
       console.log(Id, "same Id");
+dispatch(showLoading())
       const data = await getHotelData(Id);
+      dispatch(hideLoading())
       console.log(data, "ppppppppppp");
       setHotel(data);
     } catch (err) {

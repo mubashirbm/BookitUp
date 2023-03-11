@@ -6,12 +6,15 @@ import { hotels } from "../../Api/adminApi/getRequest";
 import { deletingHotel } from "../../Api/adminApi/postRequest";
 import ListHotel from "../../components/ListHotel";
 import ReactPaginate from "react-paginate";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../../redux/alertsSlice";
 
 function ViewHotel() {
   const navigate = useNavigate();
   const [Hotel, setHotel] = useState([]);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
+  const dispatch=useDispatch()
 
   const pageCount = Math.ceil(Hotel.length / perPage);
 
@@ -20,10 +23,13 @@ function ViewHotel() {
   };
 
   const getAllHotel = async () => {
+
     try {
+      dispatch(showLoading())
       console.log("first");
       const start = currentPage * perPage;
       const data = await hotels(start, perPage);
+      dispatch(hideLoading())
       setHotel(data);
       // const data = await hotels();
 

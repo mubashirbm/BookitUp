@@ -4,19 +4,22 @@ import { rooms } from "../../Api/adminApi/getRequest";
 import { deletingRoom } from "../../Api/adminApi/postRequest";
 import ListRoom from "../../components/ListRoom";
 import ReactPaginate from "react-paginate";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../../redux/alertsSlice";
 
 function ViewRoom() {
   const [room, setRoom] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const roomsPerPage = 10;
   const pagesVisited = pageNumber * roomsPerPage;
+  const dispatch=useDispatch()
 
   const getAllRoom = async () => {
     try {
       console.log("first");
-
+dispatch(showLoading())
       const data = await rooms();
-
+dispatch(hideLoading())
       setRoom(data);
     } catch (error) {
       console.log(error);

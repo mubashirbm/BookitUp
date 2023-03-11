@@ -1,4 +1,5 @@
 import ColumnGroup from "antd/es/table/ColumnGroup";
+import { Await } from "react-router-dom";
 import { adminAPI } from "../../Utils/Api"
 
 
@@ -80,8 +81,8 @@ export const getChartData =async () =>{
   export const getBookingTotal =async ()=>{
     try {
         const data=await adminAPI.get('/getBookingTotal')
-        console.log(data,'data')
-        return data
+        
+        return data.data
 
     } catch (error) {
         console.log(error)
@@ -90,8 +91,26 @@ export const getChartData =async () =>{
   export const getCanceled=async ()=>{
     try {
         const data=await adminAPI.get('/getCanceled')
-        return data
+        console.log(data)
+        return data.data
     } catch (error) {
         console.log(error)
+    }
+  }
+  export const revenueTotal =async ()=>{
+try {
+    const data=await adminAPI.get('/totalRevenue')
+    return data.data
+} catch (error) {
+console.log(error)    
+}
+  }
+
+  export const userTotal=async ()=>{
+    try {
+        const data=await adminAPI.get('/totalUser')
+        return data.data
+    } catch (error) {
+console.log(error)        
     }
   }

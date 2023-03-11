@@ -8,6 +8,7 @@ import { checkDate } from "../Api/userApi/UserRequest";
 import { toast } from "react-hot-toast";
 import Paypal from "./Paypal";
 import { useDispatch, useSelector } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 export default function Booking() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const location = useLocation();
 const Room = location.state.roomDetails;
 console.log(Room,'Room')
 const data = useSelector((state)=>state.user.user)
+const dispatch=useDispatch()
 
 
 const userId=data?._id
@@ -123,7 +125,9 @@ setBookDetails(D)
     console.log(UA, ";;;;;");
     console.log(Id, "Iddd");
     // const data = await check(Id);
+    dispatch(showLoading())
     const data = await checkDate(Id, UA);
+    dispatch(hideLoading())
     console.log(data, "data");
     let available = data.data;
     if (available == true) {

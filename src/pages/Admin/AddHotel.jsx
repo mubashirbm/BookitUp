@@ -29,6 +29,7 @@ export default function AddHotel() {
       formData.append("file", image[i]);
       formData.append("upload_preset", "Bookit");
       console.log(formData);
+      
       const response = await axios.post(
         `https://api.cloudinary.com/v1_1/${cloudAPI}/image/upload`,
         formData

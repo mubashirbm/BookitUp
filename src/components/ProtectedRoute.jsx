@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUser } from "../redux/userSlice";
 import {showLoading,hideLoading} from "../redux/alertsSlice"
+import { getUser } from "../Api/userApi/UserRequest";
 
 
 function ProtectedRoute(props) {
@@ -14,7 +15,7 @@ const user=localStorage.getItem('userToken')
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const getUser = async () => {
+  const getuser = async () => {
     try {
       dispatch(showLoading())
       const response = await getUser()
@@ -35,7 +36,7 @@ const user=localStorage.getItem('userToken')
 
     useEffect(() => {
       if (!user) {
-        getUser();
+        getuser();
       }
     }, [user]);
 

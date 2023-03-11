@@ -131,3 +131,10 @@ export const bookings =async (Id)=>{
     
   }
 }
+
+
+export const ChangeStatus=async(roomId)=>{
+  const response=await userApi.get(`/cancelStatus/${roomId}`)
+  console.log(response.data)
+  return response.data
+}

@@ -4,15 +4,20 @@ import { useEffect } from 'react'
 import { getAllBookings } from '../../Api/adminApi/getRequest'
 import ListBooking from '../../components/admin/ListBooking'
 import ReactPaginate from 'react-paginate';
+import { useDispatch } from 'react-redux'
+import { hideLoading, showLoading } from '../../redux/alertsSlice'
 
 export default function BookingManage() {
     const [booking,setBooking]=useState([])
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const dispatch=useDispatch()
     console.log(booking,"booking")
 
 const allBookings= async()=>{
+  dispatch(showLoading())
 const data=await getAllBookings()
+dispatch(hideLoading())
 console.log(data,'ALL BOOKINGS')
 setBooking(data)
 } 

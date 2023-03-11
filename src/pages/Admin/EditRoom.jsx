@@ -8,9 +8,10 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { addingRoom } from "../../Api/adminApi/postRequest";
 import {updateRoom} from '../../Api/adminApi/postRequest'
 import { Descriptions } from "antd";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function EditRoom() {
+  const navigate=useNavigate()
   const dispatch = useDispatch();
   const location = useLocation();
   const Details = location?.state?.room;
@@ -22,6 +23,7 @@ export default function EditRoom() {
   const [wifi, setWifi] = useState(Room.wifi);
   const [laundry, setLaundry] = useState(Room.laundry);
   const [AC, setAC] = useState(Room.AC);
+  
   
   // console.log(Room, "Roooom");
   useEffect(() => {
@@ -83,6 +85,7 @@ export default function EditRoom() {
         console.log(error);
       }
     }
+    navigate("/admin/rooms");
     // console.log(response);
   };
   const removeImage = (i) => {
