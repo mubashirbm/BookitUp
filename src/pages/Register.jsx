@@ -26,9 +26,7 @@ function Register() {
   const [confirm,setConfirm]=useState(false)
   const [submit,setSubmit]=useState(false)
   // const [otp,setOtp]=useState('')
-  // console.log(otp)
-
-
+  // 
 
 
   const handleName =(e)=>{
@@ -70,25 +68,25 @@ function Register() {
 
 
   const sendEmail=async()=>{
-    console.log(111111111111)
-    console.log(email)
+  
+    
     try {
       // navigate('/otp')
       const response=await sendingEmail({email})
       if(response.data.text){
-console.log("success")
+
 toast.success("Check Your Email")
-        console.log(response,"response")
+        
         const otp=response.data.text
-        console.log(otp,"response")
+        
         navigate('/otp',{state:{otp:otp,formData}})
       }else{
 
         toast.error("Email Already Exist ")
-        console.log("error")
+        
       }
     } catch (error) {
-      console.log(error)
+      
     }
   }
 

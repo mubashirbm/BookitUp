@@ -65,13 +65,7 @@ try {
     
   }
 
-  // useEffect(() => {
-  //   if (otp === Otp) {
-  //     setValid(true);
-  //   } else {
-  //     setValid(false);
-  //   }
-  // }, [otp, Otp]);
+ 
 
   return (
     <div>

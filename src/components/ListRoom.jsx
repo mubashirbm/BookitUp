@@ -45,7 +45,7 @@ export default function ListRoom({ room ,index}) {
   const editHotel=async (RoomId)=>{
     try{
       const data=await roomById(RoomId)
-console.log(RoomId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
+
     }catch(err){
       console.log(err)
     }
@@ -68,17 +68,12 @@ console.log(RoomId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
               </div>
               <div>
                 <p class="font-semibold text-white">{room.room}</p>
-                {/* <p class="text-xs text-gray-600">Programmer</p> */}
+                
               </div>
             </div>
           </td>
           <td className="p-3 pt-7  text-md text-white">{room.hotelName}</td>
-          {/* <td class="px-4 py-3 text-xs border">
-                      <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">
-                      {" "}
-                        Pending{" "}
-                        </span>
-                      </td> */}
+          
           <ul className="flex justify-center">
             <li>
               {/* <navigate {"/admin/editHotel",}> */}
@@ -107,7 +102,7 @@ console.log(RoomId,"iiiiiiiiiiiiiiiiiiidddddddddddddd")
             </li>
           </ul>
 
-          {/* <td class="px-4 py-3 text-sm border">6/10/2020</td> */}
+      
         </tr>
       )}
     </>

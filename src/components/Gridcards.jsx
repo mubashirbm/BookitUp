@@ -120,11 +120,10 @@ export default function Gridcards({ hotel }) {
                               />
                             <div className="carousel-caption hidden md:block absolute text-center">
                               <h5 className="text-xl">
-                                {/* Second slide label */}
+                               
                               </h5>
                               <p>
-                                {/* Some representative placeholder content for the
-                              second slide. */}
+                                
                               </p>
                             </div>
                           </div>
@@ -170,7 +169,7 @@ export default function Gridcards({ hotel }) {
                           <span className="visually-hidden">Next</span>
                         </button>
                       </div>
-                        <div class="flex flex-col justify-between  pl-4 leading-normal">
+                        <div class="flex flex-col justify-between bg-bla pl-4 leading-normal">
                           <h5 class="mb-2 text-4xl font-bold tracking-tight text-balck">
                             {room.room}
                           </h5>
@@ -178,9 +177,9 @@ export default function Gridcards({ hotel }) {
 
                           <p class="mb-3  inline-flex font-normal text-sm text-gray-700 dark:text-gray-400 w-1/4">
                             
-                          Room :Room Room Id:425gvbngvhbjngvhbj4245dghkghjgdkytghfty sdfd  d sgfd sgfd
-                            {room.description}
-                          {/* <button className="bg-green-300">Status</button> */}
+                          Room :Room Room Id:
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                         
                           </p>
                         </div>
                         <div class="flex flex-col justify-between -ml-20 p-4 leading-normal">

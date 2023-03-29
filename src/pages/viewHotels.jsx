@@ -6,12 +6,12 @@ import Navbar from "../components/navbar";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 export default function ViewHotel() {
-  console.log("...............................");
+  
   const Dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const [hotel, setHotel] = useState([]);
-  console.log(hotel, "Hotels");
+
 
   const data = location?.state?.city;
   const city = data.location;
@@ -32,13 +32,13 @@ export default function ViewHotel() {
   return (
     <>
       <Navbar />
-      <div className="w-full  bg-gray-900">
+      <div className="w-full  ">
         <div className="bg-blue-200 px-20 mx-auto items-start justify-center py-10 w-full">
           <h1 className="font-semibold text-2xl py-10">
             Available Popular Hotels in {city}
           </h1>
         </div>
-        <section className="container mx-auto px-6 flex items-start justify-center py-10 bg-gray-200 ">
+        <section className="container mx-auto px-6 flex items-start justify-center py-10  ">
           <div className="mr-12 text-xl w-full lg:text-2xl text-gray-800 bg-gray-100 dark:text-gray-900 font-bold ">
             {!hotel ? (
               <div className="bg-gray-900 text-white h-screen px-20 w-full">

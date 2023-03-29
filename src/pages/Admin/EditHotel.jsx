@@ -27,16 +27,7 @@ export default function EditHotel() {
   const [image, setImage] = useState([]);
   const cloudAPI = "dxrzjyxr8";
 
-  // const getHotelById = async (hotelId) => {
-  //   console.log(Id, "inside fun");
-  //   try {
-  //     console.log(hotelId, "hotel by Id");
-  //     const data = await hotelById(hotelId);
-  //     setHotelDetail(data);
-  //     console.log(data, "lllllllllll");
-  //     console.log(data.hotel, "hotelllllllllllId");
-  //   } catch (error) {}
-  // };
+  
 
   const editHotel = async (e) => {
     e.preventDefault();

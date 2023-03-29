@@ -1,6 +1,7 @@
 import React from 'react'
 import bannerImg from '../images/banner.png'
 
+
 function Banner() {
     return (
         <div className="w-full h-[90vh]">
@@ -17,6 +18,7 @@ function Banner() {
                     </p>
                 </div>
             </div>
+            
         </div>
     )
 }

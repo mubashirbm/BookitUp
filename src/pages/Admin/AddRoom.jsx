@@ -198,29 +198,7 @@ export default function AddRoom() {
                     <option>Not Available</option>
                   </select>
                 </div>
-                {/*         
-           <div>
-                <label class="text-white dark:text-gray-200" for="category">Category</label>
-                <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" onChange={(e)=>setCategory(e.target.value)} value={category} required>
-                    <option>Vlla</option>
-                    <option>Resort</option>
-                    <option></option>
-                    <option>Bandung</option>
-                    </select>
-                
-            </div> */}
-                {/* <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Range</label>
-                <input id="range" type="range" class="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
-                {/* <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Date</label>
-                <input id="date" type="date" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"/>
-            </div> */}
-                {/* <div>
-                <label class="text-white dark:text-gray-200" for="passwordConfirmation">Description</label>
-                <textarea id="description" type="text" onChange={(e)=>setDescription(e.target.value)} value={description} class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" required></textarea>
-            </div> */}
+               
                 
                 <div>
                 <label class="block text-sm font-medium text-white">

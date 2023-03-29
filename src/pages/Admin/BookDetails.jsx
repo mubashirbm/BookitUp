@@ -130,12 +130,7 @@ export default function BookDetails() {
             WIFI:{room?.roomId?.wifi}
             <br />
             <div class="py-10 text-center">
-          {/* <a
-            onClick={() => navigate("/admin/booking")}
-            class="cursor-pointer px-4 bg-red-500 rounded-3xl hover:bg-red-800 text-white font-semibold py-3"
-          >
-            Cancel Booking
-          </a> */}
+          
         </div>
           </div>
         </div>

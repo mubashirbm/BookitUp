@@ -36,11 +36,7 @@ function Layout({ children }) {
       icon:"ri-user-line"
     },
   
-    // {
-    //   name:"Profile",
-    //   path:"/profile",
-    //   icon:"ri-user-line"
-    // }
+  
     
    
   ]

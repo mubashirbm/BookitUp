@@ -21,7 +21,7 @@ import { useEffect } from 'react';
 
   
   // const data=[{username:"uhnhu",email:'njdsnkgshdigd',status:'blocked',Actions:'hhdfjdi'},{username:"uhnhu",email:'njdsnkgshdigd',status:'blocked',Actions:'hhdfjdi'},{username:"uhnhu",email:'njdsnkgshdigd',status:'blocked',Actions:'hhdfjdi'}]
-  // console.log(data)
+ 
   const [users,setUsers]=useState([])
   const [change, setChange] = useState(false);
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ import { useEffect } from 'react';
       try {
         const {data}=await getUser()
         setUsers(data)
-        console.log(data,"jjjjjjjjjjjjjjjjj")
+        
       } catch (error) {
         
       }
@@ -40,12 +40,12 @@ import { useEffect } from 'react';
 
   
   const gridUserStatus = async(params, id) => {
-    console.log(params, id, "paraamsssssssss");
+    
 
       if(params.isActive === true){
-      console.log(id,"llllllllll")
+     
       const block = (id) => {
-        console.log('hello ');
+       
         confirmAlert({
           title: 'Confirm to ',
           message: 'Are you sure ! want to Block ?',
@@ -84,7 +84,7 @@ import { useEffect } from 'react';
     }
 
     const blockAction = async (userId) => {
-      console.log(userId,"User Id")
+      
       await BlockUser(false, userId);
       // setActive(false);
       setTimeout(() => setChange(prevState => !prevState), 1000);
